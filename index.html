@@ -25,7 +25,7 @@
       display: flex;
       flex-direction: column;
     }
-    /* ----- scrollbar custom (opcional) ----- */
+    /* ----- scrollbar custom ----- */
     ::-webkit-scrollbar { width: 3px; }
     ::-webkit-scrollbar-track { background: #1a1a24; }
     ::-webkit-scrollbar-thumb { background: #c084fc; border-radius: 8px; }
@@ -133,7 +133,7 @@
       background: rgba(255, 255, 255, 0.08);
     }
 
-    /* ----- main carrossel (ocupa espaço) ----- */
+    /* ----- main carrossel ----- */
     .carousel-wrapper {
       flex: 1;
       margin-top: 120px;
@@ -148,10 +148,10 @@
     }
     .carousel-track {
       display: flex;
-      gap: 18px;
+      gap: 16px;
       overflow-x: auto;
       overflow-y: visible;
-      padding: 16px 20px;
+      padding: 16px 16px;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       scroll-behavior: smooth;
@@ -166,11 +166,11 @@
       display: none;
     }
 
-    /* ----- card 9:16 estilo tiktok - TAMANHO AUMENTADO ----- */
+    /* ----- CARD 9:16 - TAMANHO GRANDE (mobile: 1 card + pedaço) ----- */
     .card {
       flex: 0 0 auto;
-      width: 220px;
-      height: 391px; /* 220/9*16 ≈ 391 */
+      width: 280px;
+      height: 498px; /* 280/9*16 ≈ 498 */
       border-radius: 28px;
       background: #16161f;
       position: relative;
@@ -200,20 +200,20 @@
     }
     .card-content {
       position: absolute;
-      bottom: 18px;
-      left: 16px;
-      right: 16px;
+      bottom: 24px;
+      left: 20px;
+      right: 20px;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 6px;
       pointer-events: none;
       z-index: 2;
     }
     .card-title {
       font-weight: 700;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       line-height: 1.2;
-      letter-spacing: -0.2px;
+      letter-spacing: -0.3px;
       color: white;
       text-shadow: 0 2px 10px rgba(0,0,0,0.6);
       margin-bottom: 2px;
@@ -229,9 +229,9 @@
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
       border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 2px 14px 2px 12px;
+      padding: 4px 16px 4px 14px;
       border-radius: 40px;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: 600;
       text-transform: lowercase;
       color: #ddd6e8;
@@ -241,15 +241,15 @@
       gap: 4px;
     }
     .pulse-text {
-      margin-top: 4px;
-      font-size: 0.7rem;
+      margin-top: 6px;
+      font-size: 0.75rem;
       font-weight: 600;
       color: #b9adcf;
       letter-spacing: 0.5px;
       animation: pulse 2s infinite;
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
     }
     @keyframes pulse {
       0% { opacity: 0.5; transform: scale(0.98); }
@@ -453,25 +453,40 @@
       width: 22px;
     }
 
-    /* ----- responsivo (ajustes) ----- */
+    /* ----- RESPONSIVO: Ajustes para diferentes tamanhos ----- */
     @media (max-width: 480px) {
       .header { padding: 8px 12px 6px; }
-      .logo { font-size: 1rem; }
-      /* cards maiores: 180px width -> 180/9*16 = 320px height */
+      .logo { font-size: 0.95rem; }
+      .logo i { font-size: 1.1rem; }
+      .search-box input { font-size: 0.8rem; }
+      
+      /* Cards grandes: 1 card + pedaço do próximo */
       .card { 
-        width: 180px; 
-        height: 320px; 
+        width: 260px; 
+        height: 462px; 
       }
-      .card-title { font-size: 1.1rem; }
-      .carousel-wrapper { margin-top: 110px; }
+      .card-title { font-size: 1.3rem; }
+      .card-content { bottom: 20px; left: 16px; right: 16px; }
+      .carousel-wrapper { margin-top: 108px; }
+      .carousel-track { gap: 12px; padding: 12px 12px; }
     }
+
     @media (min-width: 481px) and (max-width: 768px) {
-      .card { width: 200px; height: 356px; }
-    }
-    @media (min-width: 769px) {
       .card { width: 240px; height: 427px; }
-      .carousel-wrapper { margin-top: 130px; }
+      .card-title { font-size: 1.4rem; }
+      .carousel-track { gap: 14px; padding: 14px 20px; }
     }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .card { width: 280px; height: 498px; }
+    }
+
+    @media (min-width: 1025px) {
+      .card { width: 320px; height: 569px; }
+      .carousel-wrapper { margin-top: 130px; }
+      .carousel-track { gap: 20px; padding: 20px 30px; }
+    }
+
     /* estado sem resultados */
     .no-results {
       color: #6f6485;
@@ -530,7 +545,7 @@
 
   <script>
     (function() {
-      // ----- DADOS (13 cortes) - Atualizado -----
+      // ----- DADOS (13 cortes) -----
       const cortes = [
         { id: 1, nome: "Pixie", tamanho: "curto", imagens: [
           "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format",
