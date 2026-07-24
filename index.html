@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>HairOs Cortes · Catálogo</title>
+  <title>HairOs · Cortes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
@@ -14,120 +14,169 @@
       padding: 0;
       box-sizing: border-box;
     }
+
+    :root {
+      --bg-primary: #f7f5f2;
+      --bg-secondary: #ece8e2;
+      --text-primary: #1a1816;
+      --text-secondary: #5a5550;
+      --text-muted: #8a8580;
+      --border-light: rgba(26, 24, 22, 0.06);
+      --shadow-soft: 0 8px 32px rgba(26, 24, 22, 0.06);
+    }
+
     body {
-      background: #0a0a0f;
-      color: #f0ecf5;
-      font-family: 'Quicksand', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
       height: 100vh;
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      font-weight: 400;
+      letter-spacing: 0.01em;
     }
 
-    /* ----- HEADER - FONTES GRANDES ----- */
+    /* ----- HEADER - ÉDITORIAL ----- */
     .header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       z-index: 30;
-      background: rgba(10, 10, 15, 0.6);
-      backdrop-filter: blur(14px) saturate(160%);
-      -webkit-backdrop-filter: blur(14px) saturate(160%);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      padding: 14px 18px 12px;
+      background: rgba(247, 245, 242, 0.72);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border-light);
+      padding: 18px 24px 14px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 14px;
     }
+
     .header-top {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 20px;
     }
+
     .logo {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      font-family: 'Playfair Display', serif;
       font-weight: 700;
-      font-size: 1.6rem;
-      background: linear-gradient(135deg, #c084fc, #f472b6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-size: 1.4rem;
+      letter-spacing: 0.15em;
+      color: var(--text-primary);
+      text-transform: uppercase;
       white-space: nowrap;
     }
-    .logo i {
-      background: linear-gradient(135deg, #c084fc, #f472b6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-size: 1.6rem;
+
+    .logo span {
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: var(--text-secondary);
+      font-size: 0.7rem;
+      margin-left: 2px;
     }
+
+    .logo-divider {
+      width: 1px;
+      height: 28px;
+      background: var(--border-light);
+      margin: 0 4px;
+    }
+
     .search-box {
       flex: 1;
       display: flex;
       align-items: center;
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 40px;
-      padding: 0 16px;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      transition: 0.2s;
+      background: rgba(26, 24, 22, 0.04);
+      border-radius: 0;
+      padding: 0 0 0 18px;
+      border-bottom: 1px solid var(--border-light);
+      transition: 0.25s ease;
+      max-width: 380px;
     }
+
     .search-box:focus-within {
-      border-color: #c084fc;
-      background: rgba(192, 132, 252, 0.08);
+      border-bottom-color: var(--text-primary);
     }
+
     .search-box i {
-      color: #9b8eb3;
-      font-size: 1.1rem;
-      margin-right: 10px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-right: 12px;
+      opacity: 0.6;
     }
+
     .search-box input {
       background: transparent;
       border: none;
       outline: none;
-      color: #f0ecf5;
-      font-family: 'Quicksand', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 500;
-      padding: 12px 0;
-      width: 100%;
-    }
-    .search-box input::placeholder {
-      color: #6b5f7a;
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
       font-weight: 400;
-    }
-    .filter-group {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .filter-btn {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      color: #b5aac7;
-      padding: 8px 22px;
-      border-radius: 40px;
-      font-size: 1rem;
-      font-weight: 600;
-      font-family: 'Quicksand', sans-serif;
-      transition: 0.2s;
-      cursor: pointer;
-      letter-spacing: 0.3px;
-      text-transform: lowercase;
-    }
-    .filter-btn.active {
-      background: linear-gradient(135deg, #c084fc, #f472b6);
-      color: #0a0a0f;
-      border-color: transparent;
-      box-shadow: 0 0 20px rgba(192, 132, 252, 0.25);
-    }
-    .filter-btn:hover:not(.active) {
-      background: rgba(255, 255, 255, 0.1);
+      padding: 10px 0;
+      width: 100%;
+      letter-spacing: 0.02em;
     }
 
-    /* ----- CARROSSEL - CARD QUASE TELA CHEIA ----- */
+    .search-box input::placeholder {
+      color: var(--text-muted);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      font-size: 0.8rem;
+    }
+
+    .filter-group {
+      display: flex;
+      gap: 2px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 6px 20px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      transition: 0.2s ease;
+      cursor: pointer;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .filter-btn::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 1.5px;
+      background: var(--text-primary);
+      transition: 0.25s ease;
+    }
+
+    .filter-btn.active {
+      color: var(--text-primary);
+    }
+
+    .filter-btn.active::after {
+      width: 60%;
+    }
+
+    .filter-btn:hover:not(.active) {
+      color: var(--text-secondary);
+    }
+
+    /* ----- CARROSSEL - CARD EDITORIAL ----- */
     .carousel-wrapper {
       flex: 1;
       display: flex;
@@ -136,16 +185,17 @@
       overflow: hidden;
       position: relative;
       width: 100%;
-      margin-top: 95px;
-      margin-bottom: 76px;
-      padding: 0;
+      margin-top: 105px;
+      margin-bottom: 80px;
+      padding: 0 12px;
     }
+
     .carousel-track {
       display: flex;
-      gap: 10px;
+      gap: 16px;
       overflow-x: auto;
       overflow-y: visible;
-      padding: 4px 8px;
+      padding: 8px 4px 20px;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       scroll-behavior: smooth;
@@ -156,381 +206,440 @@
       scrollbar-width: none;
       -ms-overflow-style: none;
     }
+
     .carousel-track::-webkit-scrollbar {
       display: none;
     }
 
-    /* ----- CARD GIGANTE ----- */
+    /* ----- CARD - ESTILO VOGUE PARIS 60s ----- */
     .card {
       flex: 0 0 auto;
-      width: calc(100vw - 36px);
-      max-width: 350px;
-      height: calc(100vh - 190px);
-      max-height: 600px;
-      border-radius: 32px;
-      background: #16161f;
+      width: calc(100vw - 40px);
+      max-width: 340px;
+      height: calc(100vh - 210px);
+      max-height: 580px;
+      border-radius: 0;
+      background: var(--bg-secondary);
       position: relative;
       overflow: hidden;
       scroll-snap-align: center;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-      transition: transform 0.2s ease, box-shadow 0.2s;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
       cursor: pointer;
-      border: 1px solid rgba(255, 255, 255, 0.04);
+      border: none;
       background-size: cover;
       background-position: center;
       min-width: 80vw;
     }
+
     @media (min-width: 420px) {
       .card {
-        min-width: 320px;
-        width: 320px;
+        min-width: 300px;
+        width: 300px;
       }
     }
+
     .card:hover {
-      transform: scale(1.01);
-      box-shadow: 0 24px 60px rgba(192, 132, 252, 0.12);
-      border-color: rgba(192, 132, 252, 0.12);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(26, 24, 22, 0.12);
     }
+
     .card-overlay {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 60%;
-      background: linear-gradient(to top, rgba(10, 10, 15, 0.95) 5%, transparent 100%);
+      height: 55%;
+      background: linear-gradient(to top, rgba(26, 24, 22, 0.85) 0%, rgba(26, 24, 22, 0.2) 50%, transparent 100%);
       pointer-events: none;
-      border-radius: 0 0 32px 32px;
+      border-radius: 0;
     }
+
     .card-content {
       position: absolute;
-      bottom: 30px;
-      left: 24px;
-      right: 24px;
+      bottom: 28px;
+      left: 28px;
+      right: 28px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
       pointer-events: none;
       z-index: 2;
     }
+
     .card-title {
-      font-weight: 700;
-      font-size: 2.2rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: 2rem;
       line-height: 1.1;
-      letter-spacing: -0.5px;
-      color: white;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+      letter-spacing: 0.02em;
+      color: #ffffff;
+      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.3);
       margin-bottom: 2px;
     }
+
+    .card-title i {
+      font-style: italic;
+      font-weight: 300;
+    }
+
     .card-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
       align-items: center;
+      margin-top: 4px;
     }
+
     .tag {
-      background: rgba(255, 255, 255, 0.07);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 6px 20px 6px 18px;
-      border-radius: 40px;
-      font-size: 1rem;
-      font-weight: 600;
-      text-transform: lowercase;
-      color: #ddd6e8;
-      letter-spacing: 0.3px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 4px 16px 4px 14px;
+      border-radius: 0;
+      font-size: 0.65rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255, 255, 255, 0.8);
       display: inline-flex;
       align-items: center;
-      gap: 6px;
     }
+
     .pulse-text {
-      margin-top: 8px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #b9adcf;
-      letter-spacing: 0.5px;
-      animation: pulse 2s infinite;
+      margin-top: 10px;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
       display: flex;
       align-items: center;
       gap: 10px;
-    }
-    @keyframes pulse {
-      0% { opacity: 0.5; transform: scale(0.98); }
-      50% { opacity: 1; transform: scale(1.02); }
-      100% { opacity: 0.5; transform: scale(0.98); }
+      animation: fadePulse 2.8s ease-in-out infinite;
     }
 
-    /* ----- FOOTER - FONTES GRANDES ----- */
+    .pulse-text i {
+      font-size: 0.7rem;
+      opacity: 0.5;
+    }
+
+    @keyframes fadePulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.7; }
+    }
+
+    /* ----- FOOTER - MINIMALISTA ----- */
     .footer {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
       z-index: 30;
-      background: rgba(10, 10, 15, 0.6);
-      backdrop-filter: blur(14px) saturate(160%);
-      -webkit-backdrop-filter: blur(14px) saturate(160%);
-      border-top: 1px solid rgba(255, 255, 255, 0.04);
-      padding: 12px 0 16px;
+      background: rgba(247, 245, 242, 0.72);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-top: 1px solid var(--border-light);
+      padding: 10px 0 14px;
       display: flex;
       justify-content: space-around;
       align-items: center;
     }
+
     .footer-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
-      color: #6f6485;
-      font-size: 0.9rem;
-      font-weight: 600;
-      transition: 0.2s;
+      gap: 2px;
+      color: var(--text-muted);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: 0.2s ease;
       cursor: default;
     }
+
     .footer-item i {
-      font-size: 1.8rem;
+      font-size: 1.2rem;
       margin-bottom: 2px;
-    }
-    .footer-item.active {
-      color: #c084fc;
+      opacity: 0.6;
+      transition: 0.2s ease;
     }
 
-    /* ----- MODAL - FULLSCREEN (TELA CHEIA) ----- */
+    .footer-item.active {
+      color: var(--text-primary);
+    }
+
+    .footer-item.active i {
+      opacity: 1;
+    }
+
+    .footer-item:hover:not(.active) i {
+      opacity: 0.9;
+    }
+
+    /* ----- MODAL - EDITORIAL FULLSCREEN ----- */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: #0a0a0f;
+      background: rgba(26, 24, 22, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       z-index: 999;
       display: none;
       justify-content: center;
       align-items: center;
       padding: 20px;
-      animation: fadeIn 0.3s ease;
+      animation: fadeIn 0.4s ease;
     }
+
     .modal-overlay.open {
       display: flex;
     }
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
+      from { opacity: 0; transform: scale(0.97); }
       to { opacity: 1; transform: scale(1); }
     }
+
     .modal-card {
-      background: #12121c;
-      border-radius: 32px;
+      background: var(--bg-primary);
+      border-radius: 0;
       width: 100%;
-      max-width: 420px;
-      max-height: 92vh;
-      padding: 24px 20px 28px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9);
+      max-width: 440px;
+      max-height: 90vh;
+      padding: 28px 24px 28px;
+      border: none;
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
       position: relative;
       display: flex;
       flex-direction: column;
     }
+
     @media (max-width: 480px) {
       .modal-card {
         max-width: 100%;
-        max-height: 95vh;
-        padding: 18px 14px 22px;
-        border-radius: 24px;
+        max-height: 94vh;
+        padding: 20px 16px 22px;
       }
     }
+
     .modal-close {
       position: absolute;
-      top: 14px;
-      right: 18px;
-      background: rgba(255, 255, 255, 0.06);
+      top: 16px;
+      right: 20px;
+      background: none;
       border: none;
-      color: #c8bddb;
-      font-size: 2rem;
+      color: var(--text-muted);
+      font-size: 1.4rem;
       cursor: pointer;
-      transition: 0.2s;
+      transition: 0.25s ease;
       line-height: 1;
-      padding: 0 10px;
-      border-radius: 40px;
+      padding: 4px 8px;
       z-index: 5;
-      width: 44px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-weight: 300;
     }
+
     .modal-close:hover {
-      color: #f472b6;
-      background: rgba(244, 114, 182, 0.1);
+      color: var(--text-primary);
       transform: rotate(90deg);
     }
+
     .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
       font-size: 2rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #c084fc, #f472b6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin: 4px 0 2px;
-      letter-spacing: -0.5px;
-      padding-right: 50px;
+      color: var(--text-primary);
+      margin: 2px 0 0;
+      letter-spacing: 0.02em;
+      padding-right: 48px;
     }
-    @media (max-width: 479px) {
-      .modal-title {
-        font-size: 1.6rem;
-      }
-    }
+
     .modal-sub {
-      font-size: 0.95rem;
-      color: #a99bbd;
-      margin-bottom: 14px;
-      font-weight: 500;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
+
     .modal-carousel {
       position: relative;
       width: 100%;
       aspect-ratio: 9 / 16;
-      background: #0b0b12;
-      border-radius: 24px;
+      background: var(--bg-secondary);
+      border-radius: 0;
       overflow: hidden;
-      margin: 4px 0 14px;
-      border: 1px solid rgba(255, 255, 255, 0.04);
+      margin: 2px 0 14px;
+      border: none;
       flex-shrink: 0;
     }
+
     .modal-carousel img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: opacity 0.2s;
+      transition: opacity 0.25s ease;
     }
+
     .modal-arrow {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(10, 10, 15, 0.6);
-      backdrop-filter: blur(6px);
-      border: none;
-      color: white;
-      font-size: 1.8rem;
-      padding: 6px 14px;
-      border-radius: 40px;
+      background: rgba(247, 245, 242, 0.1);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      color: #ffffff;
+      font-size: 1.2rem;
+      padding: 8px 14px;
+      border-radius: 0;
       cursor: pointer;
       z-index: 10;
-      transition: 0.2s;
-      border: 1px solid rgba(255,255,255,0.06);
+      transition: 0.2s ease;
+      font-weight: 300;
     }
+
     .modal-arrow:hover {
-      background: rgba(192, 132, 252, 0.3);
+      background: rgba(247, 245, 242, 0.2);
     }
-    .modal-arrow.left { left: 6px; }
-    .modal-arrow.right { right: 6px; }
+
+    .modal-arrow.left { left: 8px; }
+    .modal-arrow.right { right: 8px; }
+
     @media (max-width: 479px) {
       .modal-arrow {
-        font-size: 1.4rem;
-        padding: 4px 10px;
+        font-size: 1rem;
+        padding: 6px 10px;
       }
     }
+
     .modal-dots {
       display: flex;
       justify-content: center;
-      gap: 10px;
-      margin-top: 8px;
-      padding-bottom: 4px;
+      gap: 8px;
+      margin-top: 6px;
+      padding-bottom: 2px;
       flex-shrink: 0;
     }
+
     .dot {
-      width: 10px;
-      height: 10px;
-      background: #3a334b;
-      border-radius: 40px;
-      transition: 0.2s;
+      width: 6px;
+      height: 6px;
+      background: var(--border-light);
+      border-radius: 0;
+      transition: 0.25s ease;
       cursor: pointer;
       border: none;
+      padding: 0;
     }
+
     .dot.active {
-      background: linear-gradient(135deg, #c084fc, #f472b6);
-      width: 28px;
+      background: var(--text-primary);
+      width: 24px;
     }
 
     /* ----- RESPONSIVO ----- */
     @media (max-width: 400px) {
-      .header { 
-        padding: 10px 14px 10px; 
-        gap: 8px;
+      .header {
+        padding: 12px 16px 10px;
+        gap: 10px;
       }
-      .logo { 
-        font-size: 1.3rem; 
+
+      .logo {
+        font-size: 1.1rem;
+        letter-spacing: 0.1em;
       }
-      .logo i { font-size: 1.3rem; }
-      .search-box input { 
-        font-size: 0.95rem; 
-        padding: 10px 0;
+      .logo span { font-size: 0.6rem; }
+
+      .search-box {
+        max-width: 200px;
+        padding-left: 12px;
       }
-      .search-box i { font-size: 0.95rem; }
-      .filter-btn { 
-        font-size: 0.85rem; 
-        padding: 6px 16px;
+      .search-box input {
+        font-size: 0.75rem;
+        padding: 8px 0;
       }
-      
+      .search-box i { font-size: 0.75rem; }
+
+      .filter-btn {
+        font-size: 0.6rem;
+        padding: 4px 14px;
+      }
+
       .carousel-wrapper {
-        margin-top: 88px;
+        margin-top: 98px;
         margin-bottom: 72px;
+        padding: 0 6px;
       }
-      
+
       .card {
         min-width: 78vw;
-        width: calc(100vw - 28px);
-        height: calc(100vh - 178px);
-        max-height: 520px;
-        border-radius: 28px;
+        width: calc(100vw - 24px);
+        height: calc(100vh - 190px);
+        max-height: 460px;
       }
-      .card-title { font-size: 1.8rem; }
-      .card-content { bottom: 22px; left: 18px; right: 18px; }
-      .tag { font-size: 0.85rem; padding: 5px 16px 5px 14px; }
-      .pulse-text { font-size: 0.85rem; }
-      
-      .footer { 
-        padding: 10px 0 14px; 
+
+      .card-title { font-size: 1.6rem; }
+      .card-content { bottom: 20px; left: 20px; right: 20px; }
+      .tag { font-size: 0.55rem; padding: 3px 12px; }
+      .pulse-text { font-size: 0.6rem; }
+
+      .footer {
+        padding: 8px 0 12px;
       }
-      .footer-item i { 
-        font-size: 1.5rem; 
+      .footer-item i {
+        font-size: 1rem;
       }
-      .footer-item { 
-        font-size: 0.75rem; 
+      .footer-item {
+        font-size: 0.5rem;
       }
-      
+
       .modal-card {
-        padding: 14px 12px 18px;
-        max-height: 96vh;
+        padding: 16px 14px 18px;
+        max-height: 95vh;
       }
-      .modal-title { font-size: 1.4rem; }
-      .modal-sub { font-size: 0.85rem; }
-      .modal-close { 
-        font-size: 1.6rem; 
-        width: 38px;
-        height: 38px;
-        top: 10px;
-        right: 12px;
+      .modal-title { font-size: 1.5rem; }
+      .modal-sub { font-size: 0.6rem; }
+      .modal-close {
+        font-size: 1.2rem;
+        top: 12px;
+        right: 14px;
       }
     }
 
     @media (min-width: 401px) and (max-width: 600px) {
       .card {
-        min-width: 270px;
+        min-width: 250px;
         width: calc(100vw - 36px);
-        height: calc(100vh - 190px);
-        max-height: 550px;
+        height: calc(100vh - 200px);
+        max-height: 500px;
       }
-      .card-title { font-size: 2rem; }
+      .card-title { font-size: 1.7rem; }
     }
 
     .no-results {
-      color: #6f6485;
-      font-weight: 600;
+      color: var(--text-muted);
+      font-weight: 300;
       padding: 24px;
       text-align: center;
       width: 100%;
-      font-size: 1.2rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+    }
+
+    .no-results i {
+      opacity: 0.2;
+      display: block;
+      font-size: 2rem;
+      margin-bottom: 12px;
     }
   </style>
 </head>
@@ -538,7 +647,10 @@
   <!-- HEADER -->
   <header class="header" role="banner">
     <div class="header-top">
-      <div class="logo"><i class="fas fa-cut"></i> HairOs Cortes</div>
+      <div class="logo">
+        HairOs <span>cortes</span>
+        <span class="logo-divider"></span>
+      </div>
       <div class="search-box">
         <i class="fas fa-search"></i>
         <input type="text" id="searchInput" placeholder="Buscar corte..." aria-label="Buscar cortes">
@@ -561,11 +673,11 @@
   <footer class="footer" role="navigation">
     <div class="footer-item active"><i class="fas fa-home"></i><span>Início</span></div>
     <div class="footer-item"><i class="fas fa-compass"></i><span>Explorar</span></div>
-    <div class="footer-item"><i class="fas fa-heart"></i><span>Favs</span></div>
+    <div class="footer-item"><i class="fas fa-heart"></i><span>Favoritos</span></div>
     <div class="footer-item"><i class="fas fa-user"></i><span>Perfil</span></div>
   </footer>
 
-  <!-- MODAL - FULLSCREEN -->
+  <!-- MODAL -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal-card" id="modalCard">
       <button class="modal-close" id="modalClose" aria-label="Fechar modal"><i class="fas fa-times"></i></button>
@@ -675,7 +787,7 @@
         });
 
         if (filtered.length === 0) {
-          track.innerHTML = `<div class="no-results"><i class="fas fa-cut" style="opacity:0.3;display:block;font-size:2.5rem;margin-bottom:12px;"></i>Nenhum corte encontrado</div>`;
+          track.innerHTML = `<div class="no-results"><i class="fas fa-cut"></i>Nenhum corte encontrado</div>`;
           return;
         }
 
