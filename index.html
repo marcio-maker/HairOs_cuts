@@ -456,6 +456,43 @@
       color: var(--text-primary);
     }
 
+    /* BOTÃO DE FAVORITAR NO MODAL */
+    .modal-fav-float {
+      position: absolute;
+      top: 16px;
+      right: 70px;
+      background: rgba(28, 26, 23, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: 0.2s ease;
+    }
+
+    .modal-fav-float:hover {
+      transform: scale(1.1);
+      background: rgba(28, 26, 23, 0.8);
+    }
+
+    .modal-fav-float.fav {
+      color: var(--accent);
+      background: rgba(192, 57, 43, 0.2);
+      border-color: rgba(192, 57, 43, 0.3);
+    }
+
+    .modal-fav-float.fav:hover {
+      background: rgba(192, 57, 43, 0.3);
+    }
+
     .modal-title {
       font-family: 'DM Serif Display', serif;
       font-weight: 400;
@@ -521,6 +558,13 @@
       .modal-arrow {
         font-size: 1.2rem;
         padding: 6px 12px;
+      }
+      .modal-fav-float {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+        right: 60px;
+        top: 12px;
       }
     }
 
@@ -1168,6 +1212,13 @@
         top: 12px;
         right: 16px;
       }
+      .modal-fav-float {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+        right: 60px;
+        top: 12px;
+      }
 
       .diary-content, .gallery-content, .perfil-content {
         padding: 20px 16px;
@@ -1272,6 +1323,9 @@
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal-card" id="modalCard">
       <button class="modal-close" id="modalClose" aria-label="Fechar modal"><i class="fas fa-times"></i></button>
+      <button class="modal-fav-float" id="modalFavFloat" aria-label="Favoritar">
+        <i class="far fa-heart" id="modalFavFloatIcon"></i>
+      </button>
       <div class="modal-title" id="modalTitle">Pixie</div>
       <div class="modal-sub" id="modalSub">curto • 3 imagens</div>
       <div class="modal-carousel" id="modalCarousel">
@@ -1446,6 +1500,8 @@
       const modalFavBtn = document.getElementById('modalFavBtn');
       const modalFavIcon = document.getElementById('modalFavIcon');
       const modalFavText = document.getElementById('modalFavText');
+      const modalFavFloat = document.getElementById('modalFavFloat');
+      const modalFavFloatIcon = document.getElementById('modalFavFloatIcon');
 
       const galleryModal = document.getElementById('galleryModal');
       const galleryClose = document.getElementById('galleryClose');
@@ -1524,6 +1580,12 @@
       function updateModalFavButton() {
         if (!currentModalData) return;
         const isFav = isFavorite(currentModalData.id);
+        
+        // Botão flutuante
+        modalFavFloatIcon.className = isFav ? 'fas fa-heart' : 'far fa-heart';
+        modalFavFloat.classList.toggle('fav', isFav);
+        
+        // Botão inferior
         modalFavIcon.className = isFav ? 'fas fa-heart' : 'far fa-heart';
         modalFavIcon.style.color = isFav ? 'var(--accent)' : '';
         modalFavText.textContent = isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos';
@@ -1828,6 +1890,14 @@
       modalClose.addEventListener('click', closeModal);
       modalOverlay.addEventListener('click', function(e) {
         if (e.target === modalOverlay) closeModal();
+      });
+
+      // Botão flutuante de favoritar
+      modalFavFloat.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (currentModalData) {
+          toggleFavorite(currentModalData.id);
+        }
       });
 
       modalFavBtn.addEventListener('click', function(e) {
