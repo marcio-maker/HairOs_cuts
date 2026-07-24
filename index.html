@@ -316,7 +316,7 @@
       height: 44px;
       border-radius: 50%;
       cursor: pointer;
-      z-index: 5;
+      z-index: 10;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -449,18 +449,18 @@
       transition: 0.2s ease;
       line-height: 1;
       padding: 4px 8px;
-      z-index: 5;
+      z-index: 15;
     }
 
     .modal-close:hover {
       color: var(--text-primary);
     }
 
-    /* BOTÃO DE FAVORITAR NO MODAL */
+    /* BOTÃO DE FAVORITAR NO MODAL - FLUTUANTE */
     .modal-fav-float {
       position: absolute;
       top: 16px;
-      right: 70px;
+      right: 76px;
       background: rgba(28, 26, 23, 0.6);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
@@ -470,7 +470,7 @@
       height: 44px;
       border-radius: 50%;
       cursor: pointer;
-      z-index: 5;
+      z-index: 15;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -500,7 +500,7 @@
       color: var(--text-primary);
       margin: 2px 0 0;
       letter-spacing: -0.02em;
-      padding-right: 48px;
+      padding-right: 120px;
     }
 
     .modal-sub {
@@ -560,11 +560,15 @@
         padding: 6px 12px;
       }
       .modal-fav-float {
-        width: 36px;
-        height: 36px;
+        width: 38px;
+        height: 38px;
         font-size: 1rem;
-        right: 60px;
-        top: 12px;
+        right: 62px;
+        top: 14px;
+      }
+      .modal-title {
+        padding-right: 100px;
+        font-size: 1.8rem;
       }
     }
 
@@ -1205,7 +1209,10 @@
       .modal-card {
         padding: 16px 14px 20px;
       }
-      .modal-title { font-size: 1.8rem; }
+      .modal-title { 
+        font-size: 1.6rem; 
+        padding-right: 80px;
+      }
       .modal-sub { font-size: 0.8rem; }
       .modal-close {
         font-size: 1.4rem;
@@ -1215,8 +1222,8 @@
       .modal-fav-float {
         width: 36px;
         height: 36px;
-        font-size: 1rem;
-        right: 60px;
+        font-size: 0.9rem;
+        right: 58px;
         top: 12px;
       }
 
