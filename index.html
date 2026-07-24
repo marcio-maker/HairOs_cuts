@@ -6,7 +6,7 @@
   <title>HairOs · Cortes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
@@ -16,99 +16,94 @@
     }
 
     :root {
-      --bg-primary: #f7f5f2;
-      --bg-secondary: #ece8e2;
-      --text-primary: #1a1816;
-      --text-secondary: #5a5550;
-      --text-muted: #8a8580;
-      --border-light: rgba(26, 24, 22, 0.06);
-      --shadow-soft: 0 8px 32px rgba(26, 24, 22, 0.06);
+      --bg-primary: #faf8f5;
+      --bg-card: #ffffff;
+      --text-primary: #1c1a17;
+      --text-secondary: #6b6560;
+      --text-muted: #a69f98;
+      --accent: #c0392b;
+      --accent-light: #e74c3c;
+      --border: #e8e3dd;
+      --shadow: 0 4px 24px rgba(0,0,0,0.04);
     }
 
     body {
       background: var(--bg-primary);
       color: var(--text-primary);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       height: 100vh;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       font-weight: 400;
-      letter-spacing: 0.01em;
     }
 
-    /* ----- HEADER - ÉDITORIAL ----- */
+    /* ----- HEADER - MINIMALISTA ELEGANTE ----- */
     .header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       z-index: 30;
-      background: rgba(247, 245, 242, 0.72);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1px solid var(--border-light);
-      padding: 18px 24px 14px;
+      background: var(--bg-primary);
+      border-bottom: 2px solid var(--border);
+      padding: 16px 28px 12px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
 
     .header-top {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 24px;
     }
 
     .logo {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 1.6rem;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      white-space: nowrap;
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 1.4rem;
-      letter-spacing: 0.15em;
-      color: var(--text-primary);
-      text-transform: uppercase;
-      white-space: nowrap;
+      gap: 4px;
     }
 
     .logo span {
-      font-weight: 300;
-      letter-spacing: 0.3em;
-      color: var(--text-secondary);
-      font-size: 0.7rem;
-      margin-left: 2px;
+      font-weight: 400;
+      color: var(--accent);
+      font-style: italic;
+      font-size: 1.8rem;
     }
 
     .logo-divider {
-      width: 1px;
-      height: 28px;
-      background: var(--border-light);
-      margin: 0 4px;
+      width: 24px;
+      height: 1px;
+      background: var(--border);
+      margin: 0 8px;
     }
 
     .search-box {
       flex: 1;
       display: flex;
       align-items: center;
-      background: rgba(26, 24, 22, 0.04);
-      border-radius: 0;
-      padding: 0 0 0 18px;
-      border-bottom: 1px solid var(--border-light);
-      transition: 0.25s ease;
-      max-width: 380px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 0 16px;
+      transition: 0.2s ease;
+      max-width: 320px;
     }
 
     .search-box:focus-within {
-      border-bottom-color: var(--text-primary);
+      border-color: var(--text-primary);
     }
 
     .search-box i {
       color: var(--text-muted);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       margin-right: 12px;
-      opacity: 0.6;
     }
 
     .search-box input {
@@ -116,24 +111,21 @@
       border: none;
       outline: none;
       color: var(--text-primary);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.85rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
       font-weight: 400;
       padding: 10px 0;
       width: 100%;
-      letter-spacing: 0.02em;
     }
 
     .search-box input::placeholder {
       color: var(--text-muted);
       font-weight: 300;
-      letter-spacing: 0.04em;
-      font-size: 0.8rem;
     }
 
     .filter-group {
       display: flex;
-      gap: 2px;
+      gap: 4px;
       flex-wrap: wrap;
     }
 
@@ -141,39 +133,26 @@
       background: transparent;
       border: none;
       color: var(--text-muted);
-      padding: 6px 20px;
-      font-size: 0.7rem;
+      padding: 4px 18px;
+      font-size: 0.65rem;
       font-weight: 500;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       transition: 0.2s ease;
       cursor: pointer;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      position: relative;
-    }
-
-    .filter-btn::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 1.5px;
-      background: var(--text-primary);
-      transition: 0.25s ease;
+      border: 1px solid transparent;
     }
 
     .filter-btn.active {
       color: var(--text-primary);
-    }
-
-    .filter-btn.active::after {
-      width: 60%;
+      border-color: var(--text-primary);
+      background: var(--bg-card);
     }
 
     .filter-btn:hover:not(.active) {
       color: var(--text-secondary);
+      border-color: var(--border);
     }
 
     /* ----- CARROSSEL - CARD EDITORIAL ----- */
@@ -185,17 +164,17 @@
       overflow: hidden;
       position: relative;
       width: 100%;
-      margin-top: 105px;
-      margin-bottom: 80px;
-      padding: 0 12px;
+      margin-top: 100px;
+      margin-bottom: 76px;
+      padding: 0 20px;
     }
 
     .carousel-track {
       display: flex;
-      gap: 16px;
+      gap: 20px;
       overflow-x: auto;
       overflow-y: visible;
-      padding: 8px 4px 20px;
+      padding: 12px 4px 24px;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       scroll-behavior: smooth;
@@ -211,22 +190,22 @@
       display: none;
     }
 
-    /* ----- CARD - ESTILO VOGUE PARIS 60s ----- */
+    /* ----- CARD - ESTILO REVISTA DE ARTE ----- */
     .card {
       flex: 0 0 auto;
-      width: calc(100vw - 40px);
-      max-width: 340px;
-      height: calc(100vh - 210px);
-      max-height: 580px;
+      width: calc(100vw - 48px);
+      max-width: 320px;
+      height: calc(100vh - 200px);
+      max-height: 560px;
       border-radius: 0;
-      background: var(--bg-secondary);
+      background: var(--bg-card);
       position: relative;
       overflow: hidden;
       scroll-snap-align: center;
-      box-shadow: var(--shadow-soft);
-      transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.4s ease;
       cursor: pointer;
-      border: none;
+      border: 1px solid var(--border);
       background-size: cover;
       background-position: center;
       min-width: 80vw;
@@ -234,14 +213,14 @@
 
     @media (min-width: 420px) {
       .card {
-        min-width: 300px;
-        width: 300px;
+        min-width: 280px;
+        width: 280px;
       }
     }
 
     .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 48px rgba(26, 24, 22, 0.12);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
     }
 
     .card-overlay {
@@ -249,80 +228,69 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 55%;
-      background: linear-gradient(to top, rgba(26, 24, 22, 0.85) 0%, rgba(26, 24, 22, 0.2) 50%, transparent 100%);
+      height: 50%;
+      background: linear-gradient(to top, rgba(28, 26, 23, 0.9) 0%, rgba(28, 26, 23, 0.1) 60%, transparent 100%);
       pointer-events: none;
-      border-radius: 0;
     }
 
     .card-content {
       position: absolute;
-      bottom: 28px;
-      left: 28px;
-      right: 28px;
+      bottom: 24px;
+      left: 24px;
+      right: 24px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 4px;
       pointer-events: none;
       z-index: 2;
     }
 
     .card-title {
-      font-family: 'Playfair Display', serif;
+      font-family: 'DM Serif Display', serif;
       font-weight: 400;
-      font-size: 2rem;
+      font-size: 1.8rem;
       line-height: 1.1;
-      letter-spacing: 0.02em;
+      letter-spacing: -0.02em;
       color: #ffffff;
-      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.3);
-      margin-bottom: 2px;
-    }
-
-    .card-title i {
-      font-style: italic;
-      font-weight: 300;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
     }
 
     .card-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
       align-items: center;
-      margin-top: 4px;
+      margin-top: 2px;
     }
 
     .tag {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 4px 16px 4px 14px;
-      border-radius: 0;
-      font-size: 0.65rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 3px 14px;
+      font-size: 0.6rem;
       font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: rgba(255, 255, 255, 0.8);
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.7);
       display: inline-flex;
       align-items: center;
     }
 
     .pulse-text {
-      margin-top: 10px;
-      font-size: 0.7rem;
+      margin-top: 8px;
+      font-size: 0.6rem;
       font-weight: 400;
-      letter-spacing: 0.15em;
-      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.4);
       text-transform: uppercase;
       display: flex;
       align-items: center;
-      gap: 10px;
-      animation: fadePulse 2.8s ease-in-out infinite;
+      gap: 8px;
+      animation: fadePulse 3s ease-in-out infinite;
     }
 
     .pulse-text i {
-      font-size: 0.7rem;
-      opacity: 0.5;
+      font-size: 0.6rem;
     }
 
     @keyframes fadePulse {
@@ -330,18 +298,16 @@
       50% { opacity: 0.7; }
     }
 
-    /* ----- FOOTER - MINIMALISTA ----- */
+    /* ----- FOOTER - PÁGINAS DE REVISTA ----- */
     .footer {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
       z-index: 30;
-      background: rgba(247, 245, 242, 0.72);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border-top: 1px solid var(--border-light);
-      padding: 10px 0 14px;
+      background: var(--bg-primary);
+      border-top: 2px solid var(--border);
+      padding: 8px 0 12px;
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -353,18 +319,17 @@
       align-items: center;
       gap: 2px;
       color: var(--text-muted);
-      font-size: 0.6rem;
+      font-size: 0.55rem;
       font-weight: 500;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       transition: 0.2s ease;
       cursor: default;
     }
 
     .footer-item i {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       margin-bottom: 2px;
-      opacity: 0.6;
       transition: 0.2s ease;
     }
 
@@ -373,29 +338,29 @@
     }
 
     .footer-item.active i {
-      opacity: 1;
+      color: var(--accent);
     }
 
     .footer-item:hover:not(.active) i {
-      opacity: 0.9;
+      color: var(--text-secondary);
     }
 
-    /* ----- MODAL - EDITORIAL FULLSCREEN ----- */
+    /* ----- MODAL - REVISTA ----- */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(26, 24, 22, 0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: rgba(28, 26, 23, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       z-index: 999;
       display: none;
       justify-content: center;
       align-items: center;
       padding: 20px;
-      animation: fadeIn 0.4s ease;
+      animation: fadeIn 0.3s ease;
     }
 
     .modal-overlay.open {
@@ -403,19 +368,18 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.97); }
-      to { opacity: 1; transform: scale(1); }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .modal-card {
       background: var(--bg-primary);
-      border-radius: 0;
       width: 100%;
-      max-width: 440px;
-      max-height: 90vh;
-      padding: 28px 24px 28px;
-      border: none;
-      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+      max-width: 420px;
+      max-height: 92vh;
+      padding: 24px 20px 28px;
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.3);
       position: relative;
       display: flex;
       flex-direction: column;
@@ -424,48 +388,46 @@
     @media (max-width: 480px) {
       .modal-card {
         max-width: 100%;
-        max-height: 94vh;
-        padding: 20px 16px 22px;
+        max-height: 96vh;
+        padding: 18px 14px 20px;
       }
     }
 
     .modal-close {
       position: absolute;
-      top: 16px;
-      right: 20px;
+      top: 12px;
+      right: 16px;
       background: none;
       border: none;
       color: var(--text-muted);
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       cursor: pointer;
-      transition: 0.25s ease;
+      transition: 0.2s ease;
       line-height: 1;
       padding: 4px 8px;
       z-index: 5;
-      font-weight: 300;
     }
 
     .modal-close:hover {
       color: var(--text-primary);
-      transform: rotate(90deg);
     }
 
     .modal-title {
-      font-family: 'Playfair Display', serif;
+      font-family: 'DM Serif Display', serif;
       font-weight: 400;
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: var(--text-primary);
       margin: 2px 0 0;
-      letter-spacing: 0.02em;
-      padding-right: 48px;
+      letter-spacing: -0.02em;
+      padding-right: 40px;
     }
 
     .modal-sub {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       color: var(--text-muted);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       font-weight: 400;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
@@ -473,11 +435,10 @@
       position: relative;
       width: 100%;
       aspect-ratio: 9 / 16;
-      background: var(--bg-secondary);
-      border-radius: 0;
+      background: var(--bg-card);
       overflow: hidden;
-      margin: 2px 0 14px;
-      border: none;
+      margin: 2px 0 12px;
+      border: 1px solid var(--border);
       flex-shrink: 0;
     }
 
@@ -486,37 +447,35 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: opacity 0.25s ease;
+      transition: opacity 0.2s ease;
     }
 
     .modal-arrow {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(247, 245, 242, 0.1);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.04);
+      background: rgba(28, 26, 23, 0.6);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.06);
       color: #ffffff;
-      font-size: 1.2rem;
-      padding: 8px 14px;
-      border-radius: 0;
+      font-size: 1rem;
+      padding: 8px 12px;
       cursor: pointer;
       z-index: 10;
       transition: 0.2s ease;
-      font-weight: 300;
     }
 
     .modal-arrow:hover {
-      background: rgba(247, 245, 242, 0.2);
+      background: rgba(28, 26, 23, 0.8);
     }
 
-    .modal-arrow.left { left: 8px; }
-    .modal-arrow.right { right: 8px; }
+    .modal-arrow.left { left: 6px; }
+    .modal-arrow.right { right: 6px; }
 
     @media (max-width: 479px) {
       .modal-arrow {
-        font-size: 1rem;
+        font-size: 0.85rem;
         padding: 6px 10px;
       }
     }
@@ -524,17 +483,16 @@
     .modal-dots {
       display: flex;
       justify-content: center;
-      gap: 8px;
-      margin-top: 6px;
+      gap: 6px;
+      margin-top: 4px;
       padding-bottom: 2px;
       flex-shrink: 0;
     }
 
     .dot {
-      width: 6px;
-      height: 6px;
-      background: var(--border-light);
-      border-radius: 0;
+      width: 4px;
+      height: 4px;
+      background: var(--border);
       transition: 0.25s ease;
       cursor: pointer;
       border: none;
@@ -543,86 +501,84 @@
 
     .dot.active {
       background: var(--text-primary);
-      width: 24px;
+      width: 20px;
     }
 
     /* ----- RESPONSIVO ----- */
     @media (max-width: 400px) {
       .header {
         padding: 12px 16px 10px;
-        gap: 10px;
+        gap: 8px;
       }
 
       .logo {
-        font-size: 1.1rem;
-        letter-spacing: 0.1em;
+        font-size: 1.2rem;
       }
-      .logo span { font-size: 0.6rem; }
+      .logo span { font-size: 1.3rem; }
 
       .search-box {
-        max-width: 200px;
-        padding-left: 12px;
+        max-width: 160px;
+        padding: 0 12px;
       }
       .search-box input {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         padding: 8px 0;
       }
-      .search-box i { font-size: 0.75rem; }
+      .search-box i { font-size: 0.7rem; }
 
       .filter-btn {
-        font-size: 0.6rem;
-        padding: 4px 14px;
+        font-size: 0.55rem;
+        padding: 3px 12px;
       }
 
       .carousel-wrapper {
-        margin-top: 98px;
-        margin-bottom: 72px;
-        padding: 0 6px;
+        margin-top: 92px;
+        margin-bottom: 68px;
+        padding: 0 10px;
       }
 
       .card {
-        min-width: 78vw;
+        min-width: 76vw;
         width: calc(100vw - 24px);
-        height: calc(100vh - 190px);
-        max-height: 460px;
+        height: calc(100vh - 184px);
+        max-height: 420px;
       }
 
-      .card-title { font-size: 1.6rem; }
-      .card-content { bottom: 20px; left: 20px; right: 20px; }
-      .tag { font-size: 0.55rem; padding: 3px 12px; }
-      .pulse-text { font-size: 0.6rem; }
+      .card-title { font-size: 1.4rem; }
+      .card-content { bottom: 18px; left: 18px; right: 18px; }
+      .tag { font-size: 0.5rem; padding: 2px 10px; }
+      .pulse-text { font-size: 0.5rem; }
 
       .footer {
-        padding: 8px 0 12px;
+        padding: 6px 0 10px;
       }
       .footer-item i {
-        font-size: 1rem;
+        font-size: 0.9rem;
       }
       .footer-item {
-        font-size: 0.5rem;
+        font-size: 0.45rem;
       }
 
       .modal-card {
-        padding: 16px 14px 18px;
-        max-height: 95vh;
+        padding: 14px 12px 16px;
       }
-      .modal-title { font-size: 1.5rem; }
-      .modal-sub { font-size: 0.6rem; }
+      .modal-title { font-size: 1.4rem; }
+      .modal-sub { font-size: 0.55rem; }
       .modal-close {
-        font-size: 1.2rem;
-        top: 12px;
-        right: 14px;
+        font-size: 1rem;
+        top: 8px;
+        right: 12px;
       }
     }
 
     @media (min-width: 401px) and (max-width: 600px) {
       .card {
-        min-width: 250px;
+        min-width: 240px;
         width: calc(100vw - 36px);
-        height: calc(100vh - 200px);
-        max-height: 500px;
+        height: calc(100vh - 196px);
+        max-height: 480px;
       }
-      .card-title { font-size: 1.7rem; }
+      .card-title { font-size: 1.5rem; }
     }
 
     .no-results {
@@ -631,15 +587,15 @@
       padding: 24px;
       text-align: center;
       width: 100%;
-      font-size: 0.9rem;
-      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
     }
 
     .no-results i {
       opacity: 0.2;
       display: block;
-      font-size: 2rem;
-      margin-bottom: 12px;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
     }
   </style>
 </head>
@@ -648,7 +604,7 @@
   <header class="header" role="banner">
     <div class="header-top">
       <div class="logo">
-        HairOs <span>cortes</span>
+        Hair<span>Os</span>
         <span class="logo-divider"></span>
       </div>
       <div class="search-box">
