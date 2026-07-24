@@ -296,7 +296,7 @@
       50% { opacity: 0.7; }
     }
 
-    /* ----- FOOTER - PÁGINAS DE REVISTA ----- */
+    /* ----- FOOTER - COM FUNÇÕES ----- */
     .footer {
       position: fixed;
       bottom: 0;
@@ -322,7 +322,10 @@
       letter-spacing: 0.06em;
       text-transform: lowercase;
       transition: 0.2s ease;
-      cursor: default;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px 12px;
     }
 
     .footer-item i {
@@ -502,6 +505,144 @@
       width: 28px;
     }
 
+    /* ----- MODAL DE FAVORITOS (DIÁRIO) ----- */
+    .diary-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(28, 26, 23, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .diary-modal.open {
+      display: flex;
+    }
+
+    .diary-content {
+      background: var(--bg-primary);
+      width: 100%;
+      max-width: 440px;
+      max-height: 85vh;
+      padding: 28px 24px 28px;
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+      position: relative;
+      overflow-y: auto;
+    }
+
+    .diary-content::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .diary-content::-webkit-scrollbar-thumb {
+      background: var(--border);
+    }
+
+    .diary-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+    }
+
+    .diary-title {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 1.6rem;
+      color: var(--text-primary);
+    }
+
+    .diary-close {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.6rem;
+      cursor: pointer;
+      transition: 0.2s ease;
+      padding: 4px 8px;
+    }
+
+    .diary-close:hover {
+      color: var(--text-primary);
+    }
+
+    .diary-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .diary-item:last-child {
+      border-bottom: none;
+    }
+
+    .diary-item-img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .diary-item-info {
+      flex: 1;
+    }
+
+    .diary-item-name {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 1.1rem;
+      color: var(--text-primary);
+    }
+
+    .diary-item-tag {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: lowercase;
+      letter-spacing: 0.06em;
+    }
+
+    .diary-item-remove {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s ease;
+      padding: 4px 8px;
+    }
+
+    .diary-item-remove:hover {
+      color: var(--accent);
+    }
+
+    .diary-empty {
+      text-align: center;
+      color: var(--text-muted);
+      padding: 40px 20px;
+      font-size: 0.95rem;
+    }
+
+    .diary-empty i {
+      font-size: 3rem;
+      opacity: 0.2;
+      display: block;
+      margin-bottom: 16px;
+    }
+
     /* ----- RESPONSIVO ----- */
     @media (max-width: 400px) {
       .header {
@@ -571,6 +712,13 @@
         top: 12px;
         right: 16px;
       }
+
+      .diary-content {
+        padding: 20px 16px;
+      }
+      .diary-title { font-size: 1.3rem; }
+      .diary-item-img { width: 50px; height: 50px; }
+      .diary-item-name { font-size: 1rem; }
     }
 
     @media (min-width: 401px) and (max-width: 600px) {
@@ -629,13 +777,25 @@
 
   <!-- FOOTER -->
   <footer class="footer" role="navigation">
-    <div class="footer-item active"><i class="fas fa-home"></i><span>Início</span></div>
-    <div class="footer-item"><i class="fas fa-compass"></i><span>Explorar</span></div>
-    <div class="footer-item"><i class="fas fa-heart"></i><span>Favoritos</span></div>
-    <div class="footer-item"><i class="fas fa-user"></i><span>Perfil</span></div>
+    <button class="footer-item active" data-section="inicio" id="btnInicio">
+      <i class="fas fa-home"></i>
+      <span>Início</span>
+    </button>
+    <button class="footer-item" data-section="galeria" id="btnGaleria">
+      <i class="fas fa-images"></i>
+      <span>Galeria</span>
+    </button>
+    <button class="footer-item" data-section="favoritos" id="btnFavoritos">
+      <i class="fas fa-heart"></i>
+      <span>Favoritos</span>
+    </button>
+    <button class="footer-item" data-section="perfil" id="btnPerfil">
+      <i class="fas fa-user"></i>
+      <span>Perfil</span>
+    </button>
   </footer>
 
-  <!-- MODAL -->
+  <!-- MODAL DE CORTE -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal-card" id="modalCard">
       <button class="modal-close" id="modalClose" aria-label="Fechar modal"><i class="fas fa-times"></i></button>
@@ -647,6 +807,55 @@
         <button class="modal-arrow right" id="modalNext"><i class="fas fa-chevron-right"></i></button>
       </div>
       <div class="modal-dots" id="modalDots"></div>
+      <button id="modalFavBtn" style="margin-top: 14px; padding: 10px; background: var(--bg-card); border: 1px solid var(--border); cursor: pointer; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; color: var(--text-primary); transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px;">
+        <i class="far fa-heart" id="modalFavIcon"></i>
+        <span id="modalFavText">Adicionar aos favoritos</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL DIÁRIO (FAVORITOS) -->
+  <div class="diary-modal" id="diaryModal">
+    <div class="diary-content">
+      <div class="diary-header">
+        <h2 class="diary-title"><i class="fas fa-heart" style="color: var(--accent); margin-right: 10px;"></i>Meus Favoritos</h2>
+        <button class="diary-close" id="diaryClose"><i class="fas fa-times"></i></button>
+      </div>
+      <div id="diaryList"></div>
+    </div>
+  </div>
+
+  <!-- MODAL PERFIL -->
+  <div class="diary-modal" id="perfilModal">
+    <div class="diary-content">
+      <div class="diary-header">
+        <h2 class="diary-title"><i class="fas fa-user" style="color: var(--accent); margin-right: 10px;"></i>Meu Perfil</h2>
+        <button class="diary-close" id="perfilClose"><i class="fas fa-times"></i></button>
+      </div>
+      <div style="text-align: center; padding: 20px 0;">
+        <div style="width: 100px; height: 100px; border-radius: 50%; background: var(--border); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--text-muted);">
+          <i class="fas fa-user"></i>
+        </div>
+        <h3 style="font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 1.4rem; margin-bottom: 4px;">Usuário HairOs</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">Membro desde 2024</p>
+        <div style="display: flex; justify-content: center; gap: 40px; padding: 16px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 16px;">
+          <div>
+            <div style="font-family: 'DM Serif Display', serif; font-size: 1.4rem;">12</div>
+            <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em;">Favoritos</div>
+          </div>
+          <div>
+            <div style="font-family: 'DM Serif Display', serif; font-size: 1.4rem;">8</div>
+            <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em;">Cortes salvos</div>
+          </div>
+          <div>
+            <div style="font-family: 'DM Serif Display', serif; font-size: 1.4rem;">34</div>
+            <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em;">Visualizações</div>
+          </div>
+        </div>
+        <button style="padding: 10px 32px; background: var(--accent); color: white; border: none; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; cursor: pointer; transition: 0.2s; letter-spacing: 0.06em;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+          Editar perfil
+        </button>
+      </div>
     </div>
   </div>
 
@@ -731,11 +940,63 @@
       const modalPrev = document.getElementById('modalPrev');
       const modalNext = document.getElementById('modalNext');
       const modalDots = document.getElementById('modalDots');
+      const modalFavBtn = document.getElementById('modalFavBtn');
+      const modalFavIcon = document.getElementById('modalFavIcon');
+      const modalFavText = document.getElementById('modalFavText');
+
+      const diaryModal = document.getElementById('diaryModal');
+      const diaryClose = document.getElementById('diaryClose');
+      const diaryList = document.getElementById('diaryList');
+
+      const perfilModal = document.getElementById('perfilModal');
+      const perfilClose = document.getElementById('perfilClose');
+
+      const btnInicio = document.getElementById('btnInicio');
+      const btnGaleria = document.getElementById('btnGaleria');
+      const btnFavoritos = document.getElementById('btnFavoritos');
+      const btnPerfil = document.getElementById('btnPerfil');
 
       let currentModalData = null;
       let currentImageIndex = 0;
       let currentFilter = 'todos';
       let searchTerm = '';
+      let favorites = JSON.parse(localStorage.getItem('hairOsFavorites') || '[]');
+
+      function saveFavorites() {
+        localStorage.setItem('hairOsFavorites', JSON.stringify(favorites));
+        updateFavCount();
+      }
+
+      function updateFavCount() {
+        const favCount = document.querySelector('.footer-item[data-section="favoritos"] span');
+        if (favCount) {
+          favCount.textContent = favorites.length > 0 ? `Favoritos (${favorites.length})` : 'Favoritos';
+        }
+      }
+
+      function isFavorite(id) {
+        return favorites.includes(id);
+      }
+
+      function toggleFavorite(id) {
+        const index = favorites.indexOf(id);
+        if (index > -1) {
+          favorites.splice(index, 1);
+        } else {
+          favorites.push(id);
+        }
+        saveFavorites();
+        updateModalFavButton();
+        renderDiary();
+      }
+
+      function updateModalFavButton() {
+        if (!currentModalData) return;
+        const isFav = isFavorite(currentModalData.id);
+        modalFavIcon.className = isFav ? 'fas fa-heart' : 'far fa-heart';
+        modalFavIcon.style.color = isFav ? 'var(--accent)' : '';
+        modalFavText.textContent = isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos';
+      }
 
       function renderCards() {
         const filtered = cortes.filter(c => {
@@ -759,6 +1020,7 @@
                 <div class="card-title">${c.nome}</div>
                 <div class="card-tags">
                   <span class="tag">${c.tamanho}</span>
+                  ${isFavorite(c.id) ? '<span class="tag" style="background: rgba(192, 57, 43, 0.2); border-color: rgba(192, 57, 43, 0.3); color: #c0392b;"><i class="fas fa-heart" style="margin-right: 4px;"></i> Favorito</span>' : ''}
                 </div>
                 <div class="pulse-text"><i class="fas fa-hand-pointer"></i> Clique para ver mais</div>
               </div>
@@ -783,6 +1045,7 @@
         modalSub.textContent = `${corte.tamanho} • ${corte.imagens.length} imagens`;
         updateModalImage();
         renderDots();
+        updateModalFavButton();
         modalOverlay.classList.add('open');
         document.body.style.overflow = 'hidden';
       }
@@ -828,6 +1091,86 @@
         updateModalImage();
       }
 
+      function renderDiary() {
+        if (favorites.length === 0) {
+          diaryList.innerHTML = `
+            <div class="diary-empty">
+              <i class="far fa-heart"></i>
+              <p>Seu diário de favoritos está vazio.</p>
+              <p style="font-size: 0.8rem; margin-top: 8px;">Explore os cortes e adicione seus preferidos!</p>
+            </div>
+          `;
+          return;
+        }
+
+        let html = '';
+        favorites.forEach(id => {
+          const corte = cortes.find(c => c.id === id);
+          if (!corte) return;
+          const firstImg = corte.imagens[0] || 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format';
+          html += `
+            <div class="diary-item">
+              <img class="diary-item-img" src="${firstImg}" alt="${corte.nome}">
+              <div class="diary-item-info">
+                <div class="diary-item-name">${corte.nome}</div>
+                <div class="diary-item-tag">${corte.tamanho}</div>
+              </div>
+              <button class="diary-item-remove" data-id="${corte.id}" title="Remover dos favoritos">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          `;
+        });
+        diaryList.innerHTML = html;
+
+        document.querySelectorAll('.diary-item-remove').forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const id = parseInt(this.dataset.id);
+            const index = favorites.indexOf(id);
+            if (index > -1) {
+              favorites.splice(index, 1);
+              saveFavorites();
+              renderDiary();
+              renderCards();
+              if (currentModalData && currentModalData.id === id) {
+                updateModalFavButton();
+              }
+            }
+          });
+        });
+      }
+
+      function openDiary() {
+        renderDiary();
+        diaryModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        updateFooterActive('favoritos');
+      }
+
+      function closeDiary() {
+        diaryModal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      function openPerfil() {
+        perfilModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        updateFooterActive('perfil');
+      }
+
+      function closePerfil() {
+        perfilModal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      function updateFooterActive(section) {
+        document.querySelectorAll('.footer-item').forEach(item => {
+          item.classList.toggle('active', item.dataset.section === section);
+        });
+      }
+
+      // FILTROS
       filterGroup.addEventListener('click', function(e) {
         const btn = e.target.closest('.filter-btn');
         if (!btn) return;
@@ -835,19 +1178,36 @@
         btn.classList.add('active');
         currentFilter = btn.dataset.filter;
         renderCards();
+        updateFooterActive('inicio');
       });
 
+      // BUSCA
       searchInput.addEventListener('input', function() {
         searchTerm = this.value.trim();
         renderCards();
+        updateFooterActive('inicio');
       });
 
+      // MODAL
       modalClose.addEventListener('click', closeModal);
       modalOverlay.addEventListener('click', function(e) {
         if (e.target === modalOverlay) closeModal();
       });
+
+      modalFavBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (currentModalData) {
+          toggleFavorite(currentModalData.id);
+          renderCards();
+        }
+      });
+
       document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeModal();
+        if (e.key === 'Escape') {
+          closeModal();
+          closeDiary();
+          closePerfil();
+        }
         if (e.key === 'ArrowLeft' && modalOverlay.classList.contains('open')) {
           e.preventDefault();
           navigateModal(-1);
@@ -857,15 +1217,49 @@
           navigateModal(1);
         }
       });
+
       modalPrev.addEventListener('click', function(e) {
         e.stopPropagation();
         navigateModal(-1);
       });
+
       modalNext.addEventListener('click', function(e) {
         e.stopPropagation();
         navigateModal(1);
       });
 
+      // FOOTER NAVEGAÇÃO
+      btnInicio.addEventListener('click', function() {
+        updateFooterActive('inicio');
+        document.querySelector('.carousel-wrapper').scrollIntoView({ behavior: 'smooth' });
+      });
+
+      btnGaleria.addEventListener('click', function() {
+        updateFooterActive('galeria');
+        // Volta para o início do carrossel
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+      });
+
+      btnFavoritos.addEventListener('click', function() {
+        openDiary();
+      });
+
+      btnPerfil.addEventListener('click', function() {
+        openPerfil();
+      });
+
+      diaryClose.addEventListener('click', closeDiary);
+      diaryModal.addEventListener('click', function(e) {
+        if (e.target === diaryModal) closeDiary();
+      });
+
+      perfilClose.addEventListener('click', closePerfil);
+      perfilModal.addEventListener('click', function(e) {
+        if (e.target === perfilModal) closePerfil();
+      });
+
+      // INICIALIZAÇÃO
+      updateFavCount();
       renderCards();
     })();
   </script>
