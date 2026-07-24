@@ -163,8 +163,8 @@
       overflow: hidden;
       position: relative;
       width: 100%;
-      margin-top: 105px;
-      margin-bottom: 80px;
+      margin-top: 95px;
+      margin-bottom: 76px;
       padding: 0 20px;
     }
 
@@ -194,7 +194,7 @@
       flex: 0 0 auto;
       width: calc(100vw - 48px);
       max-width: 340px;
-      height: calc(100vh - 210px);
+      height: calc(100vh - 190px);
       max-height: 600px;
       border-radius: 0;
       background: var(--bg-card);
@@ -446,6 +446,7 @@
       margin: 2px 0 14px;
       border: 1px solid var(--border);
       flex-shrink: 0;
+      touch-action: pan-y;
     }
 
     .modal-carousel img {
@@ -454,6 +455,9 @@
       object-fit: cover;
       display: block;
       transition: opacity 0.2s ease;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
     /* BOTÃO DE FAVORITAR NA IMAGEM DO MODAL */
@@ -1086,7 +1090,7 @@
       }
 
       .carousel-wrapper {
-        margin-top: 98px;
+        margin-top: 92px;
         margin-bottom: 72px;
         padding: 0 10px;
       }
@@ -1094,7 +1098,7 @@
       .card {
         min-width: 78vw;
         width: calc(100vw - 28px);
-        height: calc(100vh - 190px);
+        height: calc(100vh - 184px);
         max-height: 480px;
       }
 
@@ -1130,6 +1134,10 @@
         bottom: 10px;
         right: 10px;
       }
+      .modal-arrow {
+        font-size: 1.2rem;
+        padding: 6px 10px;
+      }
 
       .diary-content, .gallery-content, .perfil-content {
         padding: 20px 16px;
@@ -1153,10 +1161,14 @@
     }
 
     @media (min-width: 401px) and (max-width: 600px) {
+      .carousel-wrapper {
+        margin-top: 95px;
+        margin-bottom: 76px;
+      }
       .card {
         min-width: 260px;
         width: calc(100vw - 36px);
-        height: calc(100vh - 200px);
+        height: calc(100vh - 190px);
         max-height: 520px;
       }
       .card-title { font-size: 2rem; }
@@ -1406,6 +1418,7 @@
       const modalDots = document.getElementById('modalDots');
       const modalImgFav = document.getElementById('modalImgFav');
       const modalImgFavIcon = document.getElementById('modalImgFavIcon');
+      const modalCarousel = document.getElementById('modalCarousel');
 
       const galleryModal = document.getElementById('galleryModal');
       const galleryClose = document.getElementById('galleryClose');
@@ -1434,9 +1447,13 @@
       let currentImageIndex = 0;
       let currentFilter = 'todos';
       let searchTerm = '';
-      // Favoritos agora salvam: { corteId, imageIndex, imageUrl, corteNome }
       let favorites = JSON.parse(localStorage.getItem('hairOsImageFavorites') || '[]');
       let profileData = JSON.parse(localStorage.getItem('hairOsProfile') || '{"nome":"Usuário HairOs","email":"usuario@hairos.com","avatar":""}');
+
+      // Variáveis para controle do scroll no modal
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let isSwiping = false;
 
       function saveFavorites() {
         localStorage.setItem('hairOsImageFavorites', JSON.stringify(favorites));
@@ -1666,7 +1683,6 @@
             if (corte) {
               closeDiary();
               openModal(corte);
-              // Navegar para a imagem específica
               setTimeout(() => {
                 currentImageIndex = imageIndex;
                 updateModalImage();
@@ -1689,6 +1705,55 @@
             }
           });
         });
+      }
+
+      // ----- SCROLL NO MODAL -----
+      function setupModalScroll() {
+        modalCarousel.addEventListener('touchstart', function(e) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+          isSwiping = false;
+        }, { passive: true });
+
+        modalCarousel.addEventListener('touchmove', function(e) {
+          if (!currentModalData) return;
+          const touchX = e.touches[0].clientX;
+          const touchY = e.touches[0].clientY;
+          const diffX = touchStartX - touchX;
+          const diffY = touchStartY - touchY;
+
+          // Determina se é um swipe horizontal
+          if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 30) {
+            isSwiping = true;
+            e.preventDefault();
+          }
+        }, { passive: false });
+
+        modalCarousel.addEventListener('touchend', function(e) {
+          if (!currentModalData || !isSwiping) return;
+          const touchX = e.changedTouches[0].clientX;
+          const diffX = touchStartX - touchX;
+
+          if (Math.abs(diffX) > 50) {
+            if (diffX > 0) {
+              navigateModal(1);
+            } else {
+              navigateModal(-1);
+            }
+          }
+          isSwiping = false;
+        }, { passive: true });
+
+        // Scroll com mouse (wheel) no modal
+        modalCarousel.addEventListener('wheel', function(e) {
+          if (!currentModalData) return;
+          e.preventDefault();
+          if (e.deltaY > 20) {
+            navigateModal(1);
+          } else if (e.deltaY < -20) {
+            navigateModal(-1);
+          }
+        }, { passive: false });
       }
 
       function openGallery() {
@@ -1774,7 +1839,6 @@
         if (e.target === modalOverlay) closeModal();
       });
 
-      // Botão de favoritar imagem no modal
       modalImgFav.addEventListener('click', function(e) {
         e.stopPropagation();
         if (currentModalData) {
@@ -1878,6 +1942,7 @@
       });
 
       // INICIALIZAÇÃO
+      setupModalScroll();
       updateFavCount();
       updatePerfilFavCount();
       loadProfile();
