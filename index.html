@@ -40,7 +40,6 @@
       font-weight: 400;
     }
 
-    /* ----- HEADER - MINIMALISTA ELEGANTE ----- */
     .header {
       position: fixed;
       top: 0;
@@ -157,7 +156,6 @@
       border-color: var(--border);
     }
 
-    /* ----- CARROSSEL - CARD EDITORIAL ----- */
     .carousel-wrapper {
       position: fixed;
       top: 0;
@@ -169,7 +167,6 @@
       justify-content: center;
       overflow: hidden;
       padding: 0 20px;
-      /* O header e footer serão aplicados via padding dinâmico via JS */
     }
 
     .carousel-track {
@@ -193,7 +190,6 @@
       display: none;
     }
 
-    /* ----- CARD - ESTILO REVISTA DE ARTE ----- */
     .card {
       flex: 0 0 auto;
       width: calc(100vw - 48px);
@@ -307,7 +303,6 @@
       50% { opacity: 0.7; }
     }
 
-    /* ----- FOOTER - COM FUNÇÕES ----- */
     .footer {
       position: fixed;
       bottom: 0;
@@ -358,7 +353,6 @@
       color: var(--text-secondary);
     }
 
-    /* ----- MODAL - REVISTA ----- */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -563,7 +557,6 @@
       width: 28px;
     }
 
-    /* ----- MODAL GALERIA (GRID) ----- */
     .gallery-modal {
       display: none;
       position: fixed;
@@ -701,7 +694,6 @@
       margin-bottom: 16px;
     }
 
-    /* ----- MODAL DIÁRIO (FAVORITOS DE IMAGENS) ----- */
     .diary-modal {
       display: none;
       position: fixed;
@@ -844,7 +836,6 @@
       margin-bottom: 16px;
     }
 
-    /* ----- PERFIL ----- */
     .perfil-modal {
       display: none;
       position: fixed;
@@ -1063,7 +1054,6 @@
       opacity: 0.85;
     }
 
-    /* ----- RESPONSIVO ----- */
     @media (max-width: 400px) {
       .header {
         padding: 12px 16px 10px;
@@ -1173,7 +1163,6 @@
       }
     }
 
-    /* Ajuste para telas muito altas */
     @media (min-height: 800px) {
       .card {
         max-height: 650px;
@@ -1200,7 +1189,6 @@
   </style>
 </head>
 <body>
-  <!-- HEADER -->
   <header class="header" role="banner" id="mainHeader">
     <div class="header-top">
       <div class="logo">
@@ -1220,12 +1208,10 @@
     </div>
   </header>
 
-  <!-- CARROSSEL -->
   <main class="carousel-wrapper" id="carouselWrapper">
     <div class="carousel-track" id="carouselTrack"></div>
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer" role="navigation" id="mainFooter">
     <button class="footer-item active" data-section="inicio" id="btnInicio">
       <i class="fas fa-home"></i>
@@ -1245,7 +1231,6 @@
     </button>
   </footer>
 
-  <!-- MODAL DE CORTE -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal-card" id="modalCard">
       <button class="modal-close" id="modalClose" aria-label="Fechar modal"><i class="fas fa-times"></i></button>
@@ -1263,7 +1248,6 @@
     </div>
   </div>
 
-  <!-- MODAL GALERIA -->
   <div class="gallery-modal" id="galleryModal">
     <div class="gallery-content">
       <div class="gallery-header">
@@ -1274,7 +1258,6 @@
     </div>
   </div>
 
-  <!-- MODAL DIÁRIO (FAVORITOS DE IMAGENS) -->
   <div class="diary-modal" id="diaryModal">
     <div class="diary-content">
       <div class="diary-header">
@@ -1285,7 +1268,6 @@
     </div>
   </div>
 
-  <!-- MODAL PERFIL -->
   <div class="perfil-modal" id="perfilModal">
     <div class="perfil-content">
       <div class="perfil-header">
@@ -1340,72 +1322,142 @@
 
   <script>
     (function() {
+      // ============================================================
+      // DADOS MIGRADOS DO NOVO ARQUIVO
+      // Mapeamento: cada corte do primeiro arquivo (13 itens)
+      // recebe imagens do segundo arquivo (37 itens)
+      // ============================================================
       const cortes = [
-        { id: 1, nome: "Pixie", tamanho: "curto", imagens: [
-          "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1560869713-a2b7f2b6a57d?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400&h=600&fit=crop&crop=center&auto=format"
-        ] },
-        { id: 2, nome: "Side Cut", tamanho: "curto", imagens: [
-          "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop&crop=center&auto=format"
-        ] },
-        { id: 3, nome: "Wolf", tamanho: "medio", imagens: [
-          "https://images.unsplash.com/photo-1560869713-2b7f2b6a57d?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1531751782190-fc6f0f0c5e6e?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format"
-        ] },
-        { id: 4, nome: "Short Bob", tamanho: "curto", imagens: [
-          "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=600&fit=crop&crop=center&auto=format"
-        ] },
-        { id: 5, nome: "Kitty", tamanho: "medio", imagens: [
-          "https://images.unsplash.com/photo-1560869713-2b7f2b6a57d?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1531751782190-fc6f0f0c5e6e?w=400&h=600&fit=crop&crop=center&auto=format"
-        ] },
-        { id: 6, nome: "Nirvana", tamanho: "medio", imagens: [
-          "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=center&auto=format"
-        ] },
-        { id: 7, nome: "Long Bob", tamanho: "medio", imagens: [
-          "https://images.unsplash.com/photo-1531751782190-fc6f0f0c5e6e?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1560869713-2b7f2b6a57d?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=600&fit=crop&crop=center&auto=format"
-        ] },
-        { id: 8, nome: "Butterfly", tamanho: "longo", imagens: [
-          "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1531751782190-fc6f0f0c5e6e?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=600&fit=crop&crop=center&auto=format"
-        ] },
-        { id: 9, nome: "Blunt", tamanho: "medio", imagens: [
-          "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format"
-        ] },
-        { id: 10, nome: "Octopus", tamanho: "longo", imagens: [
-          "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1531751782190-fc6f0f0c5e6e?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1560869713-2b7f2b6a57d?w=400&h=600&fit=crop&crop=center&auto=format"
-        ] },
-        { id: 11, nome: "Curtain Bangs", tamanho: "medio", imagens: [
-          "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format"
-        ] },
-        { id: 12, nome: "Shag", tamanho: "longo", imagens: [
-          "https://images.unsplash.com/photo-1531751782190-fc6f0f0c5e6e?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400&h=600&fit=crop&crop=center&auto=format"
-        ] },
-        { id: 13, nome: "French Bob", tamanho: "curto", imagens: [
-          "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1560869713-2b7f2b6a57d?w=400&h=600&fit=crop&crop=center&auto=format",
-          "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format"
-        ] }
+        { 
+          id: 1, 
+          nome: "Pixie", 
+          tamanho: "curto", 
+          imagens: [
+            "https://i.pinimg.com/736x/1e/59/3c/1e593c46f134db1bc0233b96d12d555f.jpg",
+            "https://i.pinimg.com/1200x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg",
+            "https://i.pinimg.com/736x/ed/4e/7e/ed4e7e466ab2d763d9fb47b14a69ee00.jpg"
+          ] 
+        },
+        { 
+          id: 2, 
+          nome: "Side Cut", 
+          tamanho: "curto", 
+          imagens: [
+            "https://i.pinimg.com/736x/83/c7/14/83c714490bf6e4033b8fe38463d2cfd3.jpg",
+            "https://i.pinimg.com/1200x/de/4d/24/de4d244b7955694a245cfdb0d916a70c.jpg",
+            "https://i.pinimg.com/1200x/f4/b1/a4/f4b1a44654f6f063ed5056c5550537e5.jpg"
+          ] 
+        },
+        { 
+          id: 3, 
+          nome: "Wolf", 
+          tamanho: "medio", 
+          imagens: [
+            "https://i.pinimg.com/736x/2a/eb/88/2aeb88213907101e1792b014a75fb4b3.jpg",
+            "https://i.pinimg.com/1200x/b7/95/84/b79584466268e95b4d99080cffff97bf.jpg",
+            "https://i.pinimg.com/1200x/cc/d4/b9/ccd4b9468a39ef0669e9c1ec22b13ff5.jpg"
+          ] 
+        },
+        { 
+          id: 4, 
+          nome: "Short Bob", 
+          tamanho: "curto", 
+          imagens: [
+            "https://i.pinimg.com/736x/bc/6e/36/bc6e36d5a0499c3fb34c6fedb7745c89.jpg",
+            "https://i.pinimg.com/736x/98/6f/3b/986f3b7f6ece364be7d82c4748a47d19.jpg",
+            "https://i.pinimg.com/736x/00/15/b1/0015b15cdba2fca92fb77fd9cb5cb88f.jpg"
+          ] 
+        },
+        { 
+          id: 5, 
+          nome: "Kitty", 
+          tamanho: "medio", 
+          imagens: [
+            "https://i.pinimg.com/736x/34/42/7d/34427d6d263a887baee616d629f6138a.jpg",
+            "https://i.pinimg.com/736x/db/62/5d/db625dc302efc77fe3db0543ceb06937.jpg",
+            "https://i.pinimg.com/1200x/ba/4b/96/ba4b961cd4aa33b125eb482565088cf8.jpg"
+          ] 
+        },
+        { 
+          id: 6, 
+          nome: "Nirvana", 
+          tamanho: "medio", 
+          imagens: [
+            "https://i.pinimg.com/736x/10/5d/21/105d2125f58a53877f6ac4655275e79e.jpg",
+            "https://i.pinimg.com/736x/5d/2b/99/5d2b99b04c57a5512011b5ee0a1a9bb0.jpg",
+            "https://i.pinimg.com/736x/17/6d/2f/176d2f2cb767e40b4763231c666bd8e6.jpg"
+          ] 
+        },
+        { 
+          id: 7, 
+          nome: "Long Bob", 
+          tamanho: "medio", 
+          imagens: [
+            "https://i.pinimg.com/1200x/c4/bb/9e/c4bb9eb05ed091dc496194f629e26c6e.jpg",
+            "https://i.pinimg.com/1200x/be/68/91/be6891207555f068fa5a0fa0a79ae882.jpg",
+            "https://i.pinimg.com/736x/e4/f8/66/e4f8660e6edb317bdaf66c66270fb05f.jpg"
+          ] 
+        },
+        { 
+          id: 8, 
+          nome: "Butterfly", 
+          tamanho: "longo", 
+          imagens: [
+            "https://i.pinimg.com/1200x/66/bb/26/66bb266d7934a62d3f30132a9f8e7bc6.jpg",
+            "https://i.pinimg.com/736x/88/27/2c/88272c86c739b50408bc6372972a7dba.jpg",
+            "https://i.pinimg.com/1200x/ec/97/85/ec9785ae609edd9958245167b09b776a.jpg"
+          ] 
+        },
+        { 
+          id: 9, 
+          nome: "Blunt", 
+          tamanho: "medio", 
+          imagens: [
+            "https://i.pinimg.com/1200x/06/15/ff/0615ff8b4ad4d40cf86d8f738b91eb44.jpg",
+            "https://i.pinimg.com/736x/64/b9/1f/64b91f2e6d9ce5414ec4f2977c44406c.jpg",
+            "https://i.pinimg.com/1200x/b0/de/95/b0de952a5d2eea7092b6272e94f0083b.jpg"
+          ] 
+        },
+        { 
+          id: 10, 
+          nome: "Octopus", 
+          tamanho: "longo", 
+          imagens: [
+            "https://i.pinimg.com/736x/d7/f2/2b/d7f22bca30309f62004694c1f7dafa73.jpg",
+            "https://i.pinimg.com/1200x/e4/4b/da/e44bdac8a5105bfec972ba9a543bfeec.jpg",
+            "https://i.pinimg.com/736x/3c/e7/6d/3ce76d862b49b6857675718fa3a9b118.jpg"
+          ] 
+        },
+        { 
+          id: 11, 
+          nome: "Curtain Bangs", 
+          tamanho: "medio", 
+          imagens: [
+            "https://i.pinimg.com/736x/58/0c/8a/580c8a16db34446e639e3bbf6672cd96.jpg",
+            "https://i.pinimg.com/1200x/f5/92/fc/f592fc5b01136dfbbd657939d7c36c81.jpg",
+            "https://i.pinimg.com/736x/ff/5a/7e/ff5a7eb07eb5263b20a8f8d4e3b03669.jpg"
+          ] 
+        },
+        { 
+          id: 12, 
+          nome: "Shag", 
+          tamanho: "longo", 
+          imagens: [
+            "https://i.pinimg.com/1200x/e7/6a/22/e76a22e038cba1d1daad41e6f2238004.jpg",
+            "https://i.pinimg.com/736x/93/f8/33/93f833f887285c9641b001fc2bb588a9.jpg",
+            "https://i.pinimg.com/736x/ee/72/aa/ee72aa6c1ce777382e3b75ad447b957e.jpg"
+          ] 
+        },
+        { 
+          id: 13, 
+          nome: "French Bob", 
+          tamanho: "curto", 
+          imagens: [
+            "https://i.pinimg.com/736x/33/40/f1/3340f1628dc6e94ef489cc02e9aef903.jpg",
+            "https://i.pinimg.com/736x/29/9e/a8/299ea87e158f4270f4bd39c9a3a13c10.jpg",
+            "https://i.pinimg.com/736x/b3/6c/d3/b36cd33b1ed1393de79c40882a7d51c7.jpg"
+          ] 
+        }
       ];
 
       const track = document.getElementById('carouselTrack');
@@ -1457,22 +1509,18 @@
       let favorites = JSON.parse(localStorage.getItem('hairOsImageFavorites') || '[]');
       let profileData = JSON.parse(localStorage.getItem('hairOsProfile') || '{"nome":"Usuário HairOs","email":"usuario@hairos.com","avatar":""}');
 
-      // Variáveis para controle do scroll no modal
       let touchStartX = 0;
       let touchStartY = 0;
       let isSwiping = false;
 
-      // ----- FUNÇÃO PARA AJUSTAR O ESPAÇAMENTO DO CARROSSEL -----
       function adjustCarouselPadding() {
         const headerHeight = header.offsetHeight;
         const footerHeight = footer.offsetHeight;
         
-        // Aplica o padding no wrapper para respeitar header e footer
         carouselWrapper.style.paddingTop = headerHeight + 'px';
         carouselWrapper.style.paddingBottom = footerHeight + 'px';
         
-        // Ajusta a altura máxima dos cards baseado no espaço disponível
-        const availableHeight = window.innerHeight - headerHeight - footerHeight - 40; // 40px de margem
+        const availableHeight = window.innerHeight - headerHeight - footerHeight - 40;
         const cards = document.querySelectorAll('.card');
         cards.forEach(card => {
           card.style.maxHeight = Math.min(600, availableHeight) + 'px';
@@ -1480,7 +1528,6 @@
         });
       }
 
-      // ----- FUNÇÕES PRINCIPAIS -----
       function saveFavorites() {
         localStorage.setItem('hairOsImageFavorites', JSON.stringify(favorites));
         updateFavCount();
@@ -1564,7 +1611,6 @@
         });
         track.innerHTML = html;
 
-        // Ajusta altura dos cards após renderizar
         setTimeout(adjustCarouselPadding, 50);
 
         document.querySelectorAll('.card').forEach(el => {
@@ -1736,7 +1782,6 @@
         });
       }
 
-      // ----- SCROLL NO MODAL -----
       function setupModalScroll() {
         modalCarousel.addEventListener('touchstart', function(e) {
           touchStartX = e.touches[0].clientX;
@@ -1840,8 +1885,6 @@
         });
       }
 
-      // ----- EVENTOS -----
-      // FILTROS
       filterGroup.addEventListener('click', function(e) {
         const btn = e.target.closest('.filter-btn');
         if (!btn) return;
@@ -1853,7 +1896,6 @@
         updateFooterActive('inicio');
       });
 
-      // BUSCA
       searchInput.addEventListener('input', function() {
         searchTerm = this.value.trim();
         renderCards();
@@ -1861,7 +1903,6 @@
         updateFooterActive('inicio');
       });
 
-      // MODAL
       modalClose.addEventListener('click', closeModal);
       modalOverlay.addEventListener('click', function(e) {
         if (e.target === modalOverlay) closeModal();
@@ -1907,7 +1948,6 @@
         navigateModal(1);
       });
 
-      // FOOTER NAVEGAÇÃO
       btnInicio.addEventListener('click', function() {
         updateFooterActive('inicio');
       });
@@ -1924,25 +1964,21 @@
         openPerfil();
       });
 
-      // GALERIA
       galleryClose.addEventListener('click', closeGallery);
       galleryModal.addEventListener('click', function(e) {
         if (e.target === galleryModal) closeGallery();
       });
 
-      // DIÁRIO
       diaryClose.addEventListener('click', closeDiary);
       diaryModal.addEventListener('click', function(e) {
         if (e.target === diaryModal) closeDiary();
       });
 
-      // PERFIL
       perfilClose.addEventListener('click', closePerfil);
       perfilModal.addEventListener('click', function(e) {
         if (e.target === perfilModal) closePerfil();
       });
 
-      // UPLOAD DE AVATAR
       avatarUpload.addEventListener('change', function(e) {
         const file = e.target.files[0];
         if (file) {
@@ -1959,7 +1995,6 @@
         }
       });
 
-      // SALVAR PERFIL
       perfilSaveBtn.addEventListener('click', function() {
         profileData.nome = perfilNome.value.trim() || 'Usuário HairOs';
         profileData.email = perfilEmail.value.trim() || 'usuario@hairos.com';
@@ -1968,21 +2003,18 @@
         closePerfil();
       });
 
-      // AJUSTE DE REDIMENSIONAMENTO
       let resizeTimeout;
       window.addEventListener('resize', function() {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(adjustCarouselPadding, 100);
       });
 
-      // INICIALIZAÇÃO
       setupModalScroll();
       updateFavCount();
       updatePerfilFavCount();
       loadProfile();
       renderCards();
       
-      // Ajusta o padding após carregar
       setTimeout(adjustCarouselPadding, 100);
     })();
   </script>
