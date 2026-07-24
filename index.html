@@ -295,7 +295,7 @@
       color: #c084fc;
     }
 
-    /* ----- MODAL ----- */
+    /* ----- MODAL - EXATAMENTE COMO ESTAVA ANTES (PERFEITO) ----- */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -325,7 +325,7 @@
       max-width: 92vw;
       width: 100%;
       max-height: 85vh;
-      padding: 24px 18px 28px;
+      padding: 20px 16px 24px;
       border: 1px solid rgba(255, 255, 255, 0.06);
       box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
       position: relative;
@@ -338,7 +338,7 @@
       .modal-card {
         max-width: 95vw;
         max-height: 88vh;
-        padding: 18px 14px 22px;
+        padding: 16px 12px 20px;
         border-radius: 28px;
         max-width: 340px;
       }
@@ -355,16 +355,16 @@
     }
     .modal-close {
       position: absolute;
-      top: 12px;
-      right: 18px;
+      top: 10px;
+      right: 16px;
       background: rgba(255, 255, 255, 0.04);
       border: none;
       color: #c8bddb;
-      font-size: 2rem;
+      font-size: 1.6rem;
       cursor: pointer;
       transition: 0.2s;
       line-height: 1;
-      padding: 0 8px;
+      padding: 0 6px;
       border-radius: 40px;
       z-index: 5;
     }
@@ -373,25 +373,25 @@
       transform: rotate(90deg);
     }
     .modal-title {
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: 700;
       background: linear-gradient(135deg, #c084fc, #f472b6);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin: 6px 0 4px;
+      margin: 4px 0 2px;
       letter-spacing: -0.5px;
       padding-right: 30px;
     }
     @media (max-width: 479px) {
       .modal-title {
-        font-size: 1.7rem;
+        font-size: 1.4rem;
       }
     }
     .modal-sub {
-      font-size: 1rem;
+      font-size: 0.85rem;
       color: #a99bbd;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       font-weight: 500;
     }
     .modal-carousel {
@@ -401,7 +401,7 @@
       background: #0b0b12;
       border-radius: 24px;
       overflow: hidden;
-      margin: 8px 0 14px;
+      margin: 6px 0 12px;
       border: 1px solid rgba(255, 255, 255, 0.04);
     }
     .modal-carousel img {
@@ -419,8 +419,8 @@
       backdrop-filter: blur(6px);
       border: none;
       color: white;
-      font-size: 1.8rem;
-      padding: 6px 14px;
+      font-size: 1.5rem;
+      padding: 4px 10px;
       border-radius: 40px;
       cursor: pointer;
       z-index: 10;
@@ -430,23 +430,23 @@
     .modal-arrow:hover {
       background: rgba(192, 132, 252, 0.3);
     }
-    .modal-arrow.left { left: 6px; }
-    .modal-arrow.right { right: 6px; }
+    .modal-arrow.left { left: 4px; }
+    .modal-arrow.right { right: 4px; }
     @media (max-width: 479px) {
       .modal-arrow {
-        font-size: 1.4rem;
-        padding: 4px 10px;
+        font-size: 1.2rem;
+        padding: 2px 8px;
       }
     }
     .modal-dots {
       display: flex;
       justify-content: center;
-      gap: 10px;
-      margin-top: 8px;
+      gap: 8px;
+      margin-top: 6px;
     }
     .dot {
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       background: #3a334b;
       border-radius: 40px;
       transition: 0.2s;
@@ -455,7 +455,7 @@
     }
     .dot.active {
       background: linear-gradient(135deg, #c084fc, #f472b6);
-      width: 28px;
+      width: 22px;
     }
 
     /* ----- RESPONSIVO ----- */
@@ -504,15 +504,6 @@
       .footer-item { 
         font-size: 0.75rem; 
       }
-      
-      .modal-card {
-        max-width: 94vw;
-        padding: 16px 12px 20px;
-        max-height: 85vh;
-      }
-      .modal-title { font-size: 1.5rem; }
-      .modal-sub { font-size: 0.9rem; }
-      .modal-close { font-size: 1.6rem; }
     }
 
     @media (min-width: 401px) and (max-width: 600px) {
