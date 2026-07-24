@@ -25,6 +25,8 @@
       --accent-light: #e74c3c;
       --border: #e8e3dd;
       --shadow: 0 4px 24px rgba(0,0,0,0.04);
+      --header-height: 0px;
+      --footer-height: 0px;
     }
 
     body {
@@ -51,6 +53,7 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
+      flex-shrink: 0;
     }
 
     .header-top {
@@ -156,20 +159,17 @@
 
     /* ----- CARROSSEL - CARD EDITORIAL ----- */
     .carousel-wrapper {
-      flex: 1;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      position: relative;
-      width: 100%;
-      margin-top: 0;
-      margin-bottom: 0;
       padding: 0 20px;
-      /* Ocupa todo o espaço entre header e footer */
-      height: 100vh;
-      padding-top: 110px; /* altura do header */
-      padding-bottom: 80px; /* altura do footer */
+      /* O header e footer serão aplicados via padding dinâmico via JS */
     }
 
     .carousel-track {
@@ -320,6 +320,7 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
+      flex-shrink: 0;
     }
 
     .footer-item {
@@ -465,7 +466,6 @@
       -webkit-user-select: none;
     }
 
-    /* BOTÃO DE FAVORITAR NA IMAGEM DO MODAL */
     .modal-img-fav {
       position: absolute;
       bottom: 16px;
@@ -1094,11 +1094,6 @@
         padding: 4px 16px;
       }
 
-      .carousel-wrapper {
-        padding-top: 95px;
-        padding-bottom: 72px;
-      }
-
       .card {
         min-width: 78vw;
         width: calc(100vw - 28px);
@@ -1165,10 +1160,6 @@
     }
 
     @media (min-width: 401px) and (max-width: 600px) {
-      .carousel-wrapper {
-        padding-top: 100px;
-        padding-bottom: 76px;
-      }
       .card {
         min-width: 260px;
         width: calc(100vw - 36px);
@@ -1210,7 +1201,7 @@
 </head>
 <body>
   <!-- HEADER -->
-  <header class="header" role="banner">
+  <header class="header" role="banner" id="mainHeader">
     <div class="header-top">
       <div class="logo">
         Hair<span>Os</span>
@@ -1230,12 +1221,12 @@
   </header>
 
   <!-- CARROSSEL -->
-  <main class="carousel-wrapper">
+  <main class="carousel-wrapper" id="carouselWrapper">
     <div class="carousel-track" id="carouselTrack"></div>
   </main>
 
   <!-- FOOTER -->
-  <footer class="footer" role="navigation">
+  <footer class="footer" role="navigation" id="mainFooter">
     <button class="footer-item active" data-section="inicio" id="btnInicio">
       <i class="fas fa-home"></i>
       <span>Início</span>
@@ -1455,6 +1446,10 @@
       const btnFavoritos = document.getElementById('btnFavoritos');
       const btnPerfil = document.getElementById('btnPerfil');
 
+      const header = document.getElementById('mainHeader');
+      const footer = document.getElementById('mainFooter');
+      const carouselWrapper = document.getElementById('carouselWrapper');
+
       let currentModalData = null;
       let currentImageIndex = 0;
       let currentFilter = 'todos';
@@ -1467,6 +1462,25 @@
       let touchStartY = 0;
       let isSwiping = false;
 
+      // ----- FUNÇÃO PARA AJUSTAR O ESPAÇAMENTO DO CARROSSEL -----
+      function adjustCarouselPadding() {
+        const headerHeight = header.offsetHeight;
+        const footerHeight = footer.offsetHeight;
+        
+        // Aplica o padding no wrapper para respeitar header e footer
+        carouselWrapper.style.paddingTop = headerHeight + 'px';
+        carouselWrapper.style.paddingBottom = footerHeight + 'px';
+        
+        // Ajusta a altura máxima dos cards baseado no espaço disponível
+        const availableHeight = window.innerHeight - headerHeight - footerHeight - 40; // 40px de margem
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+          card.style.maxHeight = Math.min(600, availableHeight) + 'px';
+          card.style.minHeight = Math.min(400, availableHeight * 0.7) + 'px';
+        });
+      }
+
+      // ----- FUNÇÕES PRINCIPAIS -----
       function saveFavorites() {
         localStorage.setItem('hairOsImageFavorites', JSON.stringify(favorites));
         updateFavCount();
@@ -1549,6 +1563,9 @@
           `;
         });
         track.innerHTML = html;
+
+        // Ajusta altura dos cards após renderizar
+        setTimeout(adjustCarouselPadding, 50);
 
         document.querySelectorAll('.card').forEach(el => {
           el.addEventListener('click', function(e) {
@@ -1734,7 +1751,6 @@
           const diffX = touchStartX - touchX;
           const diffY = touchStartY - touchY;
 
-          // Determina se é um swipe horizontal
           if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 30) {
             isSwiping = true;
             e.preventDefault();
@@ -1756,7 +1772,6 @@
           isSwiping = false;
         }, { passive: true });
 
-        // Scroll com mouse (wheel) no modal
         modalCarousel.addEventListener('wheel', function(e) {
           if (!currentModalData) return;
           e.preventDefault();
@@ -1825,6 +1840,7 @@
         });
       }
 
+      // ----- EVENTOS -----
       // FILTROS
       filterGroup.addEventListener('click', function(e) {
         const btn = e.target.closest('.filter-btn');
@@ -1894,7 +1910,6 @@
       // FOOTER NAVEGAÇÃO
       btnInicio.addEventListener('click', function() {
         updateFooterActive('inicio');
-        document.querySelector('.carousel-wrapper').scrollIntoView({ behavior: 'smooth' });
       });
 
       btnGaleria.addEventListener('click', function() {
@@ -1953,12 +1968,22 @@
         closePerfil();
       });
 
+      // AJUSTE DE REDIMENSIONAMENTO
+      let resizeTimeout;
+      window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(adjustCarouselPadding, 100);
+      });
+
       // INICIALIZAÇÃO
       setupModalScroll();
       updateFavCount();
       updatePerfilFavCount();
       loadProfile();
       renderCards();
+      
+      // Ajusta o padding após carregar
+      setTimeout(adjustCarouselPadding, 100);
     })();
   </script>
 </body>
