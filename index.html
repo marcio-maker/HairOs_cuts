@@ -166,11 +166,11 @@
       display: none;
     }
 
-    /* ----- card 9:16 estilo tiktok ----- */
+    /* ----- card 9:16 estilo tiktok - TAMANHO AUMENTADO ----- */
     .card {
       flex: 0 0 auto;
-      width: 180px;
-      height: 320px;
+      width: 220px;
+      height: 391px; /* 220/9*16 ≈ 391 */
       border-radius: 28px;
       background: #16161f;
       position: relative;
@@ -211,7 +211,7 @@
     }
     .card-title {
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       line-height: 1.2;
       letter-spacing: -0.2px;
       color: white;
@@ -231,7 +231,7 @@
       border: 1px solid rgba(255, 255, 255, 0.06);
       padding: 2px 14px 2px 12px;
       border-radius: 40px;
-      font-size: 0.6rem;
+      font-size: 0.7rem;
       font-weight: 600;
       text-transform: lowercase;
       color: #ddd6e8;
@@ -242,7 +242,7 @@
     }
     .pulse-text {
       margin-top: 4px;
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       font-weight: 600;
       color: #b9adcf;
       letter-spacing: 0.5px;
@@ -457,11 +457,19 @@
     @media (max-width: 480px) {
       .header { padding: 8px 12px 6px; }
       .logo { font-size: 1rem; }
-      .card { width: 150px; height: 266px; }
+      /* cards maiores: 180px width -> 180/9*16 = 320px height */
+      .card { 
+        width: 180px; 
+        height: 320px; 
+      }
+      .card-title { font-size: 1.1rem; }
       .carousel-wrapper { margin-top: 110px; }
     }
-    @media (min-width: 768px) {
+    @media (min-width: 481px) and (max-width: 768px) {
       .card { width: 200px; height: 356px; }
+    }
+    @media (min-width: 769px) {
+      .card { width: 240px; height: 427px; }
       .carousel-wrapper { margin-top: 130px; }
     }
     /* estado sem resultados */
@@ -554,7 +562,7 @@
           "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format",
           "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=center&auto=format"
         ] },
-        { id: 7, nome: "Long Bob", tamanho: "medio", imagens: [  // Alterado para medio
+        { id: 7, nome: "Long Bob", tamanho: "medio", imagens: [
           "https://images.unsplash.com/photo-1531751782190-fc6f0f0c5e6e?w=400&h=600&fit=crop&crop=center&auto=format",
           "https://images.unsplash.com/photo-1560869713-2b7f2b6a57d?w=400&h=600&fit=crop&crop=center&auto=format",
           "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=600&fit=crop&crop=center&auto=format"
@@ -569,12 +577,12 @@
           "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=center&auto=format",
           "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format"
         ] },
-        { id: 10, nome: "Octopus", tamanho: "longo", imagens: [  // Alterado para longo
+        { id: 10, nome: "Octopus", tamanho: "longo", imagens: [
           "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=600&fit=crop&crop=center&auto=format",
           "https://images.unsplash.com/photo-1531751782190-fc6f0f0c5e6e?w=400&h=600&fit=crop&crop=center&auto=format",
           "https://images.unsplash.com/photo-1560869713-2b7f2b6a57d?w=400&h=600&fit=crop&crop=center&auto=format"
         ] },
-        { id: 11, nome: "Curtain Bangs", tamanho: "medio", imagens: [  // Renomeado
+        { id: 11, nome: "Curtain Bangs", tamanho: "medio", imagens: [
           "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=center&auto=format",
           "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=600&fit=crop&crop=center&auto=format",
           "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format"
