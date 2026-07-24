@@ -302,6 +302,43 @@
       50% { opacity: 0.7; }
     }
 
+    /* BOTÃO DE FAVORITAR NO CARD */
+    .card-fav-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(28, 26, 23, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: 0.2s ease;
+    }
+
+    .card-fav-btn:hover {
+      transform: scale(1.1);
+      background: rgba(28, 26, 23, 0.8);
+    }
+
+    .card-fav-btn.fav {
+      color: var(--accent);
+      background: rgba(192, 57, 43, 0.2);
+      border-color: rgba(192, 57, 43, 0.3);
+    }
+
+    .card-fav-btn.fav:hover {
+      background: rgba(192, 57, 43, 0.3);
+    }
+
     /* ----- FOOTER - COM FUNÇÕES ----- */
     .footer {
       position: fixed;
@@ -531,6 +568,174 @@
       border-color: var(--text-primary);
     }
 
+    /* ----- MODAL GALERIA (GRID) ----- */
+    .gallery-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(28, 26, 23, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .gallery-modal.open {
+      display: flex;
+    }
+
+    .gallery-content {
+      background: var(--bg-primary);
+      width: 100%;
+      max-width: 600px;
+      max-height: 85vh;
+      padding: 28px 24px 28px;
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+      position: relative;
+      overflow-y: auto;
+    }
+
+    .gallery-content::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .gallery-content::-webkit-scrollbar-thumb {
+      background: var(--border);
+    }
+
+    .gallery-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+    }
+
+    .gallery-title {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 1.6rem;
+      color: var(--text-primary);
+    }
+
+    .gallery-close {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.6rem;
+      cursor: pointer;
+      transition: 0.2s ease;
+      padding: 4px 8px;
+    }
+
+    .gallery-close:hover {
+      color: var(--text-primary);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+    }
+
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 3/4;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      z-index: 2;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-item-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 8px 10px;
+      background: linear-gradient(to top, rgba(28, 26, 23, 0.8), transparent);
+    }
+
+    .gallery-item-name {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 0.85rem;
+      color: #ffffff;
+    }
+
+    .gallery-item-tag {
+      font-size: 0.55rem;
+      color: rgba(255,255,255,0.6);
+      text-transform: lowercase;
+      letter-spacing: 0.06em;
+    }
+
+    .gallery-item-fav {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(28, 26, 23, 0.6);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #ffffff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      transition: 0.2s ease;
+      z-index: 2;
+    }
+
+    .gallery-item-fav:hover {
+      transform: scale(1.1);
+    }
+
+    .gallery-item-fav.fav {
+      color: var(--accent);
+      background: rgba(192, 57, 43, 0.2);
+      border-color: rgba(192, 57, 43, 0.3);
+    }
+
+    .gallery-empty {
+      text-align: center;
+      color: var(--text-muted);
+      padding: 40px 20px;
+      font-size: 0.95rem;
+    }
+
+    .gallery-empty i {
+      font-size: 3rem;
+      opacity: 0.2;
+      display: block;
+      margin-bottom: 16px;
+    }
+
     /* ----- MODAL DIÁRIO (FAVORITOS) ----- */
     .diary-modal {
       display: none;
@@ -674,8 +879,8 @@
       margin-bottom: 16px;
     }
 
-    /* ----- MODAL GALERIA (GRID) ----- */
-    .gallery-modal {
+    /* ----- PERFIL COMPLETO ----- */
+    .perfil-modal {
       display: none;
       position: fixed;
       top: 0;
@@ -692,14 +897,14 @@
       animation: fadeIn 0.3s ease;
     }
 
-    .gallery-modal.open {
+    .perfil-modal.open {
       display: flex;
     }
 
-    .gallery-content {
+    .perfil-content {
       background: var(--bg-primary);
       width: 100%;
-      max-width: 600px;
+      max-width: 440px;
       max-height: 85vh;
       padding: 28px 24px 28px;
       border: 1px solid var(--border);
@@ -708,15 +913,15 @@
       overflow-y: auto;
     }
 
-    .gallery-content::-webkit-scrollbar {
+    .perfil-content::-webkit-scrollbar {
       width: 4px;
     }
 
-    .gallery-content::-webkit-scrollbar-thumb {
+    .perfil-content::-webkit-scrollbar-thumb {
       background: var(--border);
     }
 
-    .gallery-header {
+    .perfil-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -725,14 +930,14 @@
       padding-bottom: 12px;
     }
 
-    .gallery-title {
+    .perfil-title {
       font-family: 'DM Serif Display', serif;
       font-weight: 400;
       font-size: 1.6rem;
       color: var(--text-primary);
     }
 
-    .gallery-close {
+    .perfil-close {
       background: none;
       border: none;
       color: var(--text-muted);
@@ -742,74 +947,155 @@
       padding: 4px 8px;
     }
 
-    .gallery-close:hover {
+    .perfil-close:hover {
       color: var(--text-primary);
     }
 
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 12px;
-    }
-
-    .gallery-item {
+    .perfil-avatar {
+      text-align: center;
+      padding: 10px 0 20px;
       position: relative;
-      aspect-ratio: 3/4;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .gallery-item:hover {
-      transform: scale(1.03);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-      z-index: 2;
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
+    .perfil-avatar-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid var(--border);
       object-fit: cover;
+      margin: 0 auto 12px;
       display: block;
+      background: var(--bg-card);
     }
 
-    .gallery-item-overlay {
+    .perfil-avatar-placeholder {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid var(--border);
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      color: var(--text-muted);
+      background: var(--bg-card);
+    }
+
+    .perfil-avatar-upload {
+      position: relative;
+      display: inline-block;
+      margin-top: -10px;
+    }
+
+    .perfil-avatar-upload input[type="file"] {
       position: absolute;
-      bottom: 0;
+      top: 0;
       left: 0;
       width: 100%;
-      padding: 8px 10px;
-      background: linear-gradient(to top, rgba(28, 26, 23, 0.8), transparent);
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
     }
 
-    .gallery-item-name {
+    .perfil-avatar-upload label {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 6px 20px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-block;
+      transition: 0.2s ease;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--text-secondary);
+    }
+
+    .perfil-avatar-upload label:hover {
+      border-color: var(--text-primary);
+    }
+
+    .perfil-form {
+      padding: 10px 0;
+    }
+
+    .perfil-form-group {
+      margin-bottom: 16px;
+    }
+
+    .perfil-form-group label {
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .perfil-form-group input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      transition: 0.2s ease;
+      outline: none;
+    }
+
+    .perfil-form-group input:focus {
+      border-color: var(--text-primary);
+    }
+
+    .perfil-form-group input:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .perfil-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin: 16px 0;
+    }
+
+    .perfil-stat {
+      text-align: center;
+    }
+
+    .perfil-stat-number {
       font-family: 'DM Serif Display', serif;
-      font-weight: 400;
-      font-size: 0.85rem;
-      color: #ffffff;
+      font-size: 1.4rem;
+      color: var(--text-primary);
     }
 
-    .gallery-item-tag {
-      font-size: 0.55rem;
-      color: rgba(255,255,255,0.6);
-      text-transform: lowercase;
+    .perfil-stat-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
       letter-spacing: 0.06em;
     }
 
-    .gallery-empty {
-      text-align: center;
-      color: var(--text-muted);
-      padding: 40px 20px;
+    .perfil-save-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 0.95rem;
+      cursor: pointer;
+      transition: 0.2s;
+      letter-spacing: 0.06em;
+      margin-top: 8px;
     }
 
-    .gallery-empty i {
-      font-size: 3rem;
-      opacity: 0.2;
-      display: block;
-      margin-bottom: 16px;
+    .perfil-save-btn:hover {
+      opacity: 0.85;
     }
 
     /* ----- RESPONSIVO ----- */
@@ -860,6 +1146,7 @@
       .card-content { bottom: 22px; left: 22px; right: 22px; }
       .tag { font-size: 0.75rem; padding: 3px 14px; }
       .pulse-text { font-size: 0.75rem; }
+      .card-fav-btn { width: 36px; height: 36px; font-size: 1rem; top: 12px; right: 12px; }
 
       .footer {
         padding: 10px 0 14px;
@@ -882,10 +1169,10 @@
         right: 16px;
       }
 
-      .diary-content, .gallery-content {
+      .diary-content, .gallery-content, .perfil-content {
         padding: 20px 16px;
       }
-      .diary-title, .gallery-title { font-size: 1.3rem; }
+      .diary-title, .gallery-title, .perfil-title { font-size: 1.3rem; }
       .diary-item-img { width: 50px; height: 50px; }
       .diary-item-name { font-size: 1rem; }
 
@@ -893,6 +1180,14 @@
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
         gap: 8px;
       }
+
+      .perfil-avatar-img, .perfil-avatar-placeholder {
+        width: 90px;
+        height: 90px;
+        font-size: 2.5rem;
+      }
+      .perfil-stats { gap: 20px; }
+      .perfil-stat-number { font-size: 1.2rem; }
     }
 
     @media (min-width: 401px) and (max-width: 600px) {
@@ -1014,37 +1309,56 @@
     </div>
   </div>
 
-  <!-- MODAL PERFIL -->
-  <div class="diary-modal" id="perfilModal">
-    <div class="diary-content">
-      <div class="diary-header">
-        <h2 class="diary-title"><i class="fas fa-user" style="color: var(--accent); margin-right: 10px;"></i>Meu Perfil</h2>
-        <button class="diary-close" id="perfilClose"><i class="fas fa-times"></i></button>
+  <!-- MODAL PERFIL COMPLETO -->
+  <div class="perfil-modal" id="perfilModal">
+    <div class="perfil-content">
+      <div class="perfil-header">
+        <h2 class="perfil-title"><i class="fas fa-user" style="color: var(--accent); margin-right: 10px;"></i>Meu Perfil</h2>
+        <button class="perfil-close" id="perfilClose"><i class="fas fa-times"></i></button>
       </div>
-      <div style="text-align: center; padding: 20px 0;">
-        <div style="width: 100px; height: 100px; border-radius: 50%; background: var(--border); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--text-muted);">
+
+      <div class="perfil-avatar">
+        <img id="perfilAvatarImg" class="perfil-avatar-img" src="" alt="Avatar" style="display: none;">
+        <div id="perfilAvatarPlaceholder" class="perfil-avatar-placeholder">
           <i class="fas fa-user"></i>
         </div>
-        <h3 style="font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 1.4rem; margin-bottom: 4px;">Usuário HairOs</h3>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">Membro desde 2024</p>
-        <div style="display: flex; justify-content: center; gap: 40px; padding: 16px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 16px;">
-          <div>
-            <div style="font-family: 'DM Serif Display', serif; font-size: 1.4rem;" id="perfilFavCount">0</div>
-            <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em;">Favoritos</div>
-          </div>
-          <div>
-            <div style="font-family: 'DM Serif Display', serif; font-size: 1.4rem;">13</div>
-            <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em;">Cortes</div>
-          </div>
-          <div>
-            <div style="font-family: 'DM Serif Display', serif; font-size: 1.4rem;">34</div>
-            <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em;">Visualizações</div>
-          </div>
+        <div class="perfil-avatar-upload">
+          <label for="avatarUpload">Alterar foto</label>
+          <input type="file" id="avatarUpload" accept="image/*">
         </div>
-        <button style="padding: 10px 32px; background: var(--accent); color: white; border: none; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; cursor: pointer; transition: 0.2s; letter-spacing: 0.06em;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
-          Editar perfil
-        </button>
       </div>
+
+      <div class="perfil-form">
+        <div class="perfil-form-group">
+          <label>Nome</label>
+          <input type="text" id="perfilNome" value="Usuário HairOs">
+        </div>
+        <div class="perfil-form-group">
+          <label>Email</label>
+          <input type="email" id="perfilEmail" value="usuario@hairos.com">
+        </div>
+        <div class="perfil-form-group">
+          <label>Membro desde</label>
+          <input type="text" id="perfilMembro" value="2024" disabled>
+        </div>
+      </div>
+
+      <div class="perfil-stats">
+        <div class="perfil-stat">
+          <div class="perfil-stat-number" id="perfilFavCount">0</div>
+          <div class="perfil-stat-label">Favoritos</div>
+        </div>
+        <div class="perfil-stat">
+          <div class="perfil-stat-number">13</div>
+          <div class="perfil-stat-label">Cortes</div>
+        </div>
+        <div class="perfil-stat">
+          <div class="perfil-stat-number">34</div>
+          <div class="perfil-stat-label">Visualizações</div>
+        </div>
+      </div>
+
+      <button class="perfil-save-btn" id="perfilSaveBtn">Salvar alterações</button>
     </div>
   </div>
 
@@ -1144,6 +1458,12 @@
       const perfilModal = document.getElementById('perfilModal');
       const perfilClose = document.getElementById('perfilClose');
       const perfilFavCount = document.getElementById('perfilFavCount');
+      const perfilAvatarImg = document.getElementById('perfilAvatarImg');
+      const perfilAvatarPlaceholder = document.getElementById('perfilAvatarPlaceholder');
+      const avatarUpload = document.getElementById('avatarUpload');
+      const perfilNome = document.getElementById('perfilNome');
+      const perfilEmail = document.getElementById('perfilEmail');
+      const perfilSaveBtn = document.getElementById('perfilSaveBtn');
 
       const btnInicio = document.getElementById('btnInicio');
       const btnGaleria = document.getElementById('btnGaleria');
@@ -1155,11 +1475,19 @@
       let currentFilter = 'todos';
       let searchTerm = '';
       let favorites = JSON.parse(localStorage.getItem('hairOsFavorites') || '[]');
+      let profileData = JSON.parse(localStorage.getItem('hairOsProfile') || '{"nome":"Usuário HairOs","email":"usuario@hairos.com","avatar":""}');
 
       function saveFavorites() {
         localStorage.setItem('hairOsFavorites', JSON.stringify(favorites));
         updateFavCount();
         updatePerfilFavCount();
+        renderCards();
+        renderGallery();
+        renderDiary();
+      }
+
+      function saveProfile() {
+        localStorage.setItem('hairOsProfile', JSON.stringify(profileData));
       }
 
       function updateFavCount() {
@@ -1189,8 +1517,8 @@
         saveFavorites();
         updateModalFavButton();
         renderCards();
-        renderDiary();
         renderGallery();
+        renderDiary();
       }
 
       function updateModalFavButton() {
@@ -1216,14 +1544,18 @@
         let html = '';
         filtered.forEach(c => {
           const firstImg = c.imagens[0] || 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format';
+          const isFav = isFavorite(c.id);
           html += `
             <div class="card" data-id="${c.id}" style="background-image: url('${firstImg}');">
+              <button class="card-fav-btn ${isFav ? 'fav' : ''}" data-id="${c.id}" onclick="event.stopPropagation(); window.toggleFavoriteCard(${c.id})">
+                <i class="${isFav ? 'fas' : 'far'} fa-heart"></i>
+              </button>
               <div class="card-overlay"></div>
               <div class="card-content">
                 <div class="card-title">${c.nome}</div>
                 <div class="card-tags">
                   <span class="tag">${c.tamanho}</span>
-                  ${isFavorite(c.id) ? '<span class="tag tag-fav"><i class="fas fa-heart" style="margin-right: 4px;"></i> Favorito</span>' : ''}
+                  ${isFav ? '<span class="tag tag-fav"><i class="fas fa-heart" style="margin-right: 4px;"></i> Favorito</span>' : ''}
                 </div>
                 <div class="pulse-text"><i class="fas fa-hand-pointer"></i> Clique para ver mais</div>
               </div>
@@ -1234,6 +1566,7 @@
 
         document.querySelectorAll('.card').forEach(el => {
           el.addEventListener('click', function(e) {
+            if (e.target.closest('.card-fav-btn')) return;
             const id = parseInt(this.dataset.id);
             const corte = cortes.find(c => c.id === id);
             if (corte) openModal(corte);
@@ -1261,12 +1594,16 @@
         let html = '';
         filtered.forEach(c => {
           const firstImg = c.imagens[0] || 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format';
+          const isFav = isFavorite(c.id);
           html += `
             <div class="gallery-item" data-id="${c.id}">
+              <button class="gallery-item-fav ${isFav ? 'fav' : ''}" data-id="${c.id}" onclick="event.stopPropagation(); window.toggleFavoriteGallery(${c.id})">
+                <i class="${isFav ? 'fas' : 'far'} fa-heart"></i>
+              </button>
               <img src="${firstImg}" alt="${c.nome}">
               <div class="gallery-item-overlay">
                 <div class="gallery-item-name">${c.nome}</div>
-                <div class="gallery-item-tag">${c.tamanho} ${isFavorite(c.id) ? '❤' : ''}</div>
+                <div class="gallery-item-tag">${c.tamanho}</div>
               </div>
             </div>
           `;
@@ -1274,7 +1611,8 @@
         galleryGrid.innerHTML = html;
 
         document.querySelectorAll('.gallery-item').forEach(el => {
-          el.addEventListener('click', function() {
+          el.addEventListener('click', function(e) {
+            if (e.target.closest('.gallery-item-fav')) return;
             const id = parseInt(this.dataset.id);
             const corte = cortes.find(c => c.id === id);
             if (corte) {
@@ -1425,6 +1763,7 @@
       }
 
       function openPerfil() {
+        loadProfile();
         updatePerfilFavCount();
         perfilModal.classList.add('open');
         document.body.style.overflow = 'hidden';
@@ -1436,11 +1775,34 @@
         document.body.style.overflow = '';
       }
 
+      function loadProfile() {
+        const data = JSON.parse(localStorage.getItem('hairOsProfile') || '{"nome":"Usuário HairOs","email":"usuario@hairos.com","avatar":""}');
+        perfilNome.value = data.nome || 'Usuário HairOs';
+        perfilEmail.value = data.email || 'usuario@hairos.com';
+        if (data.avatar) {
+          perfilAvatarImg.src = data.avatar;
+          perfilAvatarImg.style.display = 'block';
+          perfilAvatarPlaceholder.style.display = 'none';
+        } else {
+          perfilAvatarImg.style.display = 'none';
+          perfilAvatarPlaceholder.style.display = 'flex';
+        }
+      }
+
       function updateFooterActive(section) {
         document.querySelectorAll('.footer-item').forEach(item => {
           item.classList.toggle('active', item.dataset.section === section);
         });
       }
+
+      // EXPOR FUNÇÕES PARA O ONCLICK
+      window.toggleFavoriteCard = function(id) {
+        toggleFavorite(id);
+      };
+
+      window.toggleFavoriteGallery = function(id) {
+        toggleFavorite(id);
+      };
 
       // FILTROS
       filterGroup.addEventListener('click', function(e) {
@@ -1520,24 +1882,54 @@
         openPerfil();
       });
 
+      // GALERIA
       galleryClose.addEventListener('click', closeGallery);
       galleryModal.addEventListener('click', function(e) {
         if (e.target === galleryModal) closeGallery();
       });
 
+      // DIÁRIO
       diaryClose.addEventListener('click', closeDiary);
       diaryModal.addEventListener('click', function(e) {
         if (e.target === diaryModal) closeDiary();
       });
 
+      // PERFIL
       perfilClose.addEventListener('click', closePerfil);
       perfilModal.addEventListener('click', function(e) {
         if (e.target === perfilModal) closePerfil();
       });
 
+      // UPLOAD DE AVATAR
+      avatarUpload.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(event) {
+            const imageUrl = event.target.result;
+            perfilAvatarImg.src = imageUrl;
+            perfilAvatarImg.style.display = 'block';
+            perfilAvatarPlaceholder.style.display = 'none';
+            profileData.avatar = imageUrl;
+            saveProfile();
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      // SALVAR PERFIL
+      perfilSaveBtn.addEventListener('click', function() {
+        profileData.nome = perfilNome.value.trim() || 'Usuário HairOs';
+        profileData.email = perfilEmail.value.trim() || 'usuario@hairos.com';
+        saveProfile();
+        alert('Perfil atualizado com sucesso!');
+        closePerfil();
+      });
+
       // INICIALIZAÇÃO
       updateFavCount();
       updatePerfilFavCount();
+      loadProfile();
       renderCards();
     })();
   </script>
