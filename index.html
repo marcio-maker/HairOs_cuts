@@ -24,16 +24,16 @@
       flex-direction: column;
     }
 
-    /* ----- HEADER - MINIMALISTA E DISCRETO ----- */
+    /* ----- HEADER - TRANSPARENTE E DISCRETO ----- */
     .header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       z-index: 30;
-      background: rgba(10, 10, 15, 0.6);
-      backdrop-filter: blur(14px) saturate(160%);
-      -webkit-backdrop-filter: blur(14px) saturate(160%);
+      background: rgba(10, 10, 15, 0.5);
+      backdrop-filter: blur(12px) saturate(160%);
+      -webkit-backdrop-filter: blur(12px) saturate(160%);
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
       padding: 10px 14px 8px;
       display: flex;
@@ -68,7 +68,7 @@
       flex: 1;
       display: flex;
       align-items: center;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 40px;
       padding: 0 12px;
       border: 1px solid rgba(255, 255, 255, 0.04);
@@ -104,8 +104,8 @@
       flex-wrap: wrap;
     }
     .filter-btn {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.04);
       color: #b5aac7;
       padding: 3px 14px;
       border-radius: 40px;
@@ -121,13 +121,13 @@
       background: linear-gradient(135deg, #c084fc, #f472b6);
       color: #0a0a0f;
       border-color: transparent;
-      box-shadow: 0 0 14px rgba(192, 132, 252, 0.25);
+      box-shadow: 0 0 14px rgba(192, 132, 252, 0.2);
     }
     .filter-btn:hover:not(.active) {
       background: rgba(255, 255, 255, 0.08);
     }
 
-    /* ----- CARROSSEL - OCUPA TODO O ESPAÇO ----- */
+    /* ----- CARROSSEL - CARD QUASE TELA CHEIA ----- */
     .carousel-wrapper {
       flex: 1;
       display: flex;
@@ -136,9 +136,8 @@
       overflow: hidden;
       position: relative;
       width: 100%;
-      /* Header + footer ocupam o mínimo possível */
-      margin-top: 75px;
-      margin-bottom: 58px;
+      margin-top: 72px;
+      margin-bottom: 56px;
       padding: 0;
     }
     .carousel-track {
@@ -146,7 +145,7 @@
       gap: 10px;
       overflow-x: auto;
       overflow-y: visible;
-      padding: 6px 8px;
+      padding: 4px 8px;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       scroll-behavior: smooth;
@@ -161,53 +160,52 @@
       display: none;
     }
 
-    /* ----- CARD GIGANTE - QUASE TELA CHEIA ----- */
+    /* ----- CARD GIGANTE - 9:16 - QUASE TELA CHEIA ----- */
     .card {
       flex: 0 0 auto;
-      width: calc(100vw - 40px);
-      max-width: 340px;
-      height: calc(100vh - 160px);
+      width: calc(100vw - 36px);
+      max-width: 350px;
+      height: calc(100vh - 148px);
       max-height: 620px;
       border-radius: 32px;
       background: #16161f;
       position: relative;
       overflow: hidden;
       scroll-snap-align: center;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
       transition: transform 0.2s ease, box-shadow 0.2s;
       cursor: pointer;
       border: 1px solid rgba(255, 255, 255, 0.04);
       background-size: cover;
       background-position: center;
-      /* Mostra apenas um pedacinho do próximo card */
-      min-width: 85vw;
+      min-width: 80vw;
     }
     @media (min-width: 420px) {
       .card {
-        min-width: 340px;
-        width: 340px;
+        min-width: 320px;
+        width: 320px;
       }
     }
     .card:hover {
       transform: scale(1.01);
-      box-shadow: 0 20px 50px rgba(192, 132, 252, 0.15);
-      border-color: rgba(192, 132, 252, 0.15);
+      box-shadow: 0 24px 60px rgba(192, 132, 252, 0.12);
+      border-color: rgba(192, 132, 252, 0.12);
     }
     .card-overlay {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 65%;
+      height: 60%;
       background: linear-gradient(to top, rgba(10, 10, 15, 0.95) 5%, transparent 100%);
       pointer-events: none;
       border-radius: 0 0 32px 32px;
     }
     .card-content {
       position: absolute;
-      bottom: 30px;
-      left: 24px;
-      right: 24px;
+      bottom: 28px;
+      left: 22px;
+      right: 22px;
       display: flex;
       flex-direction: column;
       gap: 6px;
@@ -230,10 +228,10 @@
       align-items: center;
     }
     .tag {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.07);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.05);
       padding: 5px 18px 5px 16px;
       border-radius: 40px;
       font-size: 0.85rem;
@@ -262,16 +260,16 @@
       100% { opacity: 0.5; transform: scale(0.98); }
     }
 
-    /* ----- FOOTER - MINIMALISTA ----- */
+    /* ----- FOOTER - TRANSPARENTE E DISCRETO ----- */
     .footer {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
       z-index: 30;
-      background: rgba(10, 10, 15, 0.6);
-      backdrop-filter: blur(14px) saturate(160%);
-      -webkit-backdrop-filter: blur(14px) saturate(160%);
+      background: rgba(10, 10, 15, 0.5);
+      backdrop-filter: blur(12px) saturate(160%);
+      -webkit-backdrop-filter: blur(12px) saturate(160%);
       border-top: 1px solid rgba(255, 255, 255, 0.04);
       padding: 6px 0 10px;
       display: flex;
@@ -296,14 +294,14 @@
       color: #c084fc;
     }
 
-    /* ----- MODAL (overlay + card) ----- */
+    /* ----- MODAL - MESMA PROPORÇÃO DO CARD ----- */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba(0, 0, 0, 0.7);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       z-index: 999;
@@ -323,28 +321,32 @@
     .modal-card {
       background: #14141e;
       border-radius: 32px;
-      max-width: 90vw;
+      max-width: 92vw;
       width: 100%;
-      max-height: 90vh;
+      max-height: 85vh;
       padding: 20px 16px 24px;
       border: 1px solid rgba(255, 255, 255, 0.06);
       box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
       position: relative;
       animation: slideUp 0.3s ease;
       overflow-y: auto;
+      /* Mesma proporção 9:16 do card */
+      aspect-ratio: 9 / 16;
+      max-width: 360px;
     }
-    @media (min-width: 480px) {
-      .modal-card {
-        max-width: 400px;
-        max-height: 85vh;
-      }
-    }
-    @media (max-width: 479px) {
+    @media (max-width: 480px) {
       .modal-card {
         max-width: 95vw;
-        max-height: 92vh;
+        max-height: 88vh;
         padding: 16px 12px 20px;
-        border-radius: 24px;
+        border-radius: 28px;
+        max-width: 340px;
+      }
+    }
+    @media (min-width: 481px) {
+      .modal-card {
+        max-width: 380px;
+        max-height: 82vh;
       }
     }
     @keyframes slideUp {
@@ -383,11 +385,11 @@
     }
     @media (max-width: 479px) {
       .modal-title {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
       }
     }
     .modal-sub {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: #a99bbd;
       margin-bottom: 12px;
       font-weight: 500;
@@ -401,7 +403,6 @@
       overflow: hidden;
       margin: 6px 0 12px;
       border: 1px solid rgba(255, 255, 255, 0.04);
-      max-height: 65vh;
     }
     .modal-carousel img {
       width: 100%;
@@ -472,27 +473,33 @@
       .carousel-track { gap: 8px; padding: 4px 6px; }
       
       .card {
-        min-width: 82vw;
-        width: calc(100vw - 32px);
+        min-width: 78vw;
+        width: calc(100vw - 28px);
         height: calc(100vh - 140px);
         max-height: 540px;
         border-radius: 28px;
       }
       .card-title { font-size: 1.6rem; }
-      .card-content { bottom: 24px; left: 18px; right: 18px; }
+      .card-content { bottom: 22px; left: 18px; right: 18px; }
       .tag { font-size: 0.75rem; padding: 4px 14px 4px 12px; }
       .pulse-text { font-size: 0.7rem; }
       
       .footer { padding: 4px 0 8px; }
       .footer-item i { font-size: 1.1rem; }
       .footer-item { font-size: 0.55rem; }
+      
+      .modal-card {
+        max-width: 94vw;
+        padding: 14px 10px 18px;
+        max-height: 85vh;
+      }
     }
 
     @media (min-width: 401px) and (max-width: 600px) {
       .card {
-        min-width: 280px;
-        width: calc(100vw - 40px);
-        height: calc(100vh - 150px);
+        min-width: 270px;
+        width: calc(100vw - 36px);
+        height: calc(100vh - 148px);
         max-height: 560px;
       }
       .card-title { font-size: 1.8rem; }
