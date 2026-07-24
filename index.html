@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>HairOs Cortes · Catálogo</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ----- reset & base ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #0a0a0f;
+      color: #f0ecf5;
+      font-family: 'Quicksand', sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    /* ----- scrollbar custom (opcional) ----- */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: #1a1a24; }
+    ::-webkit-scrollbar-thumb { background: #c084fc; border-radius: 8px; }
+
+    /* ----- header fixo glass ----- */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 30;
+      background: rgba(10, 10, 15, 0.65);
+      backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 12px 16px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .header-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+      font-size: 1.25rem;
+      background: linear-gradient(135deg, #c084fc, #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      white-space: nowrap;
+    }
+    .logo i {
+      background: linear-gradient(135deg, #c084fc, #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 1.3rem;
+    }
+    .search-box {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 40px;
+      padding: 0 12px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: 0.2s;
+    }
+    .search-box:focus-within {
+      border-color: #c084fc;
+      background: rgba(192, 132, 252, 0.08);
+    }
+    .search-box i {
+      color: #9b8eb3;
+      font-size: 0.9rem;
+      margin-right: 6px;
+    }
+    .search-box input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #f0ecf5;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.9rem;
+      padding: 8px 0;
+      width: 100%;
+    }
+    .search-box input::placeholder {
+      color: #6b5f7a;
+      font-weight: 400;
+    }
+    .filter-group {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      padding-bottom: 2px;
+    }
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: #b5aac7;
+      padding: 4px 14px;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      font-family: 'Quicksand', sans-serif;
+      transition: 0.2s;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+      text-transform: lowercase;
+    }
+    .filter-btn.active {
+      background: linear-gradient(135deg, #c084fc, #f472b6);
+      color: #0a0a0f;
+      border-color: transparent;
+      box-shadow: 0 0 12px rgba(192, 132, 252, 0.3);
+    }
+    .filter-btn:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* ----- main carrossel (ocupa espaço) ----- */
+    .carousel-wrapper {
+      flex: 1;
+      margin-top: 120px;
+      margin-bottom: 68px;
+      padding: 8px 0 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+    .carousel-track {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      overflow-y: visible;
+      padding: 16px 20px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+      width: 100%;
+      justify-content: flex-start;
+      align-items: center;
+      height: 100%;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .carousel-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* ----- card 9:16 estilo tiktok ----- */
+    .card {
+      flex: 0 0 auto;
+      width: 180px;
+      height: 320px;
+      border-radius: 28px;
+      background: #16161f;
+      position: relative;
+      overflow: hidden;
+      scroll-snap-align: center;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+      transition: transform 0.2s ease, box-shadow 0.2s;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      background-size: cover;
+      background-position: center;
+    }
+    .card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 16px 40px rgba(192, 132, 252, 0.2);
+      border-color: rgba(192, 132, 252, 0.2);
+    }
+    .card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 70%;
+      background: linear-gradient(to top, rgba(10, 10, 15, 0.92) 10%, transparent 100%);
+      pointer-events: none;
+      border-radius: 0 0 28px 28px;
+    }
+    .card-content {
+      position: absolute;
+      bottom: 18px;
+      left: 16px;
+      right: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .card-title {
+      font-weight: 700;
+      font-size: 1.2rem;
+      line-height: 1.2;
+      letter-spacing: -0.2px;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+      margin-bottom: 2px;
+    }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+    .tag {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 2px 14px 2px 12px;
+      border-radius: 40px;
+      font-size: 0.6rem;
+      font-weight: 600;
+      text-transform: lowercase;
+      color: #ddd6e8;
+      letter-spacing: 0.3px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .pulse-text {
+      margin-top: 4px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: #b9adcf;
+      letter-spacing: 0.5px;
+      animation: pulse 2s infinite;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    @keyframes pulse {
+      0% { opacity: 0.5; transform: scale(0.98); }
+      50% { opacity: 1; transform: scale(1.02); }
+      100% { opacity: 0.5; transform: scale(0.98); }
+    }
+
+    /* ----- footer fixo glass ----- */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 30;
+      background: rgba(10, 10, 15, 0.7);
+      backdrop-filter: blur(14px) saturate(160%);
+      -webkit-backdrop-filter: blur(14px) saturate(160%);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 8px 0 10px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .footer-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0px;
+      color: #6f6485;
+      font-size: 0.65rem;
+      font-weight: 600;
+      transition: 0.2s;
+      cursor: default;
+    }
+    .footer-item i {
+      font-size: 1.4rem;
+      margin-bottom: 1px;
+    }
+    .footer-item.active {
+      color: #c084fc;
+    }
+
+    /* ----- MODAL (overlay + card) - RESPONSIVO ----- */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 999;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+      animation: fadeIn 0.25s ease;
+    }
+    .modal-overlay.open {
+      display: flex;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .modal-card {
+      background: #14141e;
+      border-radius: 32px;
+      max-width: 90vw;
+      width: 100%;
+      max-height: 90vh;
+      padding: 20px 16px 24px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+      position: relative;
+      animation: slideUp 0.3s ease;
+      overflow-y: auto;
+    }
+    @media (min-width: 480px) {
+      .modal-card {
+        max-width: 400px;
+        max-height: 85vh;
+      }
+    }
+    @media (max-width: 479px) {
+      .modal-card {
+        max-width: 95vw;
+        max-height: 92vh;
+        padding: 16px 12px 20px;
+        border-radius: 24px;
+      }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: none;
+      color: #c8bddb;
+      font-size: 1.6rem;
+      cursor: pointer;
+      transition: 0.2s;
+      line-height: 1;
+      padding: 0 6px;
+      border-radius: 40px;
+      z-index: 5;
+    }
+    .modal-close:hover {
+      color: #f472b6;
+      transform: rotate(90deg);
+    }
+    .modal-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #c084fc, #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 4px 0 2px;
+      letter-spacing: -0.5px;
+      padding-right: 30px;
+    }
+    @media (max-width: 479px) {
+      .modal-title {
+        font-size: 1.4rem;
+      }
+    }
+    .modal-sub {
+      font-size: 0.8rem;
+      color: #a99bbd;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+    .modal-carousel {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      background: #0b0b12;
+      border-radius: 24px;
+      overflow: hidden;
+      margin: 6px 0 12px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      max-height: 65vh;
+    }
+    .modal-carousel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.2s;
+    }
+    .modal-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(10, 10, 15, 0.6);
+      backdrop-filter: blur(6px);
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      padding: 4px 10px;
+      border-radius: 40px;
+      cursor: pointer;
+      z-index: 10;
+      transition: 0.2s;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .modal-arrow:hover {
+      background: rgba(192, 132, 252, 0.3);
+    }
+    .modal-arrow.left { left: 4px; }
+    .modal-arrow.right { right: 4px; }
+    @media (max-width: 479px) {
+      .modal-arrow {
+        font-size: 1.2rem;
+        padding: 2px 8px;
+      }
+    }
+    .modal-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: #3a334b;
+      border-radius: 40px;
+      transition: 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .dot.active {
+      background: linear-gradient(135deg, #c084fc, #f472b6);
+      width: 22px;
+    }
+
+    /* ----- responsivo (ajustes) ----- */
+    @media (max-width: 480px) {
+      .header { padding: 8px 12px 6px; }
+      .logo { font-size: 1rem; }
+      .card { width: 150px; height: 266px; }
+      .carousel-wrapper { margin-top: 110px; }
+    }
+    @media (min-width: 768px) {
+      .card { width: 200px; height: 356px; }
+      .carousel-wrapper { margin-top: 130px; }
+    }
+    /* estado sem resultados */
+    .no-results {
+      color: #6f6485;
+      font-weight: 600;
+      padding: 24px;
+      text-align: center;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER FIXO -->
+  <header class="header" role="banner">
+    <div class="header-top">
+      <div class="logo"><i class="fas fa-cut"></i> HairOs Cortes</div>
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Buscar corte..." aria-label="Buscar cortes">
+      </div>
+    </div>
+    <div class="filter-group" id="filterGroup">
+      <button class="filter-btn active" data-filter="todos">Todos</button>
+      <button class="filter-btn" data-filter="curto">Curto</button>
+      <button class="filter-btn" data-filter="medio">Médio</button>
+      <button class="filter-btn" data-filter="longo">Longo</button>
+    </div>
+  </header>
+
+  <!-- CARROSSEL PRINCIPAL -->
+  <main class="carousel-wrapper">
+    <div class="carousel-track" id="carouselTrack"></div>
+  </main>
+
+  <!-- FOOTER FIXO (apenas visual) -->
+  <footer class="footer" role="navigation">
+    <div class="footer-item active"><i class="fas fa-home"></i><span>Início</span></div>
+    <div class="footer-item"><i class="fas fa-compass"></i><span>Explorar</span></div>
+    <div class="footer-item"><i class="fas fa-heart"></i><span>Favs</span></div>
+    <div class="footer-item"><i class="fas fa-user"></i><span>Perfil</span></div>
+  </footer>
+
+  <!-- MODAL (overlay) -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-card" id="modalCard">
+      <button class="modal-close" id="modalClose" aria-label="Fechar modal"><i class="fas fa-times"></i></button>
+      <div class="modal-title" id="modalTitle">Pixie</div>
+      <div class="modal-sub" id="modalSub">curto • 3 imagens</div>
+      <div class="modal-carousel" id="modalCarousel">
+        <img id="modalImg" src="" alt="corte">
+        <button class="modal-arrow left" id="modalPrev"><i class="fas fa-chevron-left"></i></button>
+        <button class="modal-arrow right" id="modalNext"><i class="fas fa-chevron-right"></i></button>
+      </div>
+      <div class="modal-dots" id="modalDots"></div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // ----- DADOS (13 cortes) - Atualizado -----
+      const cortes = [
+        { id: 1, nome: "Pixie", tamanho: "curto", imagens: [
+          "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1560869713-a2b7f2b6a57d?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400&h=600&fit=crop&crop=center&auto=format"
+        ] },
+        { id: 2, nome: "Side Cut", tamanho: "curto", imagens: [
+          "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop&crop=center&auto=format"
+        ] },
+        { id: 3, nome: "Wolf", tamanho: "medio", imagens: [
+          "https://images.unsplash.com/photo-1560869713-2b7f2b6a57d?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1531751782190-fc6f0f0c5e6e?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format"
+        ] },
+        { id: 4, nome: "Short Bob", tamanho: "curto", imagens: [
+          "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=600&fit=crop&crop=center&auto=format"
+        ] },
+        { id: 5, nome: "Kitty", tamanho: "medio", imagens: [
+          "https://images.unsplash.com/photo-1560869713-2b7f2b6a57d?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1531751782190-fc6f0f0c5e6e?w=400&h=600&fit=crop&crop=center&auto=format"
+        ] },
+        { id: 6, nome: "Nirvana", tamanho: "medio", imagens: [
+          "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=center&auto=format"
+        ] },
+        { id: 7, nome: "Long Bob", tamanho: "medio", imagens: [  // Alterado para medio
+          "https://images.unsplash.com/photo-1531751782190-fc6f0f0c5e6e?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1560869713-2b7f2b6a57d?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=600&fit=crop&crop=center&auto=format"
+        ] },
+        { id: 8, nome: "Butterfly", tamanho: "longo", imagens: [
+          "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1531751782190-fc6f0f0c5e6e?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=600&fit=crop&crop=center&auto=format"
+        ] },
+        { id: 9, nome: "Blunt", tamanho: "medio", imagens: [
+          "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format"
+        ] },
+        { id: 10, nome: "Octopus", tamanho: "longo", imagens: [  // Alterado para longo
+          "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1531751782190-fc6f0f0c5e6e?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1560869713-2b7f2b6a57d?w=400&h=600&fit=crop&crop=center&auto=format"
+        ] },
+        { id: 11, nome: "Curtain Bangs", tamanho: "medio", imagens: [  // Renomeado
+          "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format"
+        ] },
+        { id: 12, nome: "Shag", tamanho: "longo", imagens: [
+          "https://images.unsplash.com/photo-1531751782190-fc6f0f0c5e6e?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400&h=600&fit=crop&crop=center&auto=format"
+        ] },
+        { id: 13, nome: "French Bob", tamanho: "curto", imagens: [
+          "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1560869713-2b7f2b6a57d?w=400&h=600&fit=crop&crop=center&auto=format",
+          "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format"
+        ] }
+      ];
+
+      // referências DOM
+      const track = document.getElementById('carouselTrack');
+      const searchInput = document.getElementById('searchInput');
+      const filterGroup = document.getElementById('filterGroup');
+      const modalOverlay = document.getElementById('modalOverlay');
+      const modalClose = document.getElementById('modalClose');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalSub = document.getElementById('modalSub');
+      const modalImg = document.getElementById('modalImg');
+      const modalPrev = document.getElementById('modalPrev');
+      const modalNext = document.getElementById('modalNext');
+      const modalDots = document.getElementById('modalDots');
+
+      // estado do modal
+      let currentModalData = null;
+      let currentImageIndex = 0;
+
+      // estado de filtro
+      let currentFilter = 'todos';
+      let searchTerm = '';
+
+      // ----- renderiza cards -----
+      function renderCards() {
+        const filtered = cortes.filter(c => {
+          const matchSize = currentFilter === 'todos' || c.tamanho === currentFilter;
+          const matchSearch = c.nome.toLowerCase().includes(searchTerm.toLowerCase());
+          return matchSize && matchSearch;
+        });
+
+        if (filtered.length === 0) {
+          track.innerHTML = `<div class="no-results"><i class="fas fa-cut" style="opacity:0.3;display:block;font-size:2rem;margin-bottom:8px;"></i>Nenhum corte encontrado</div>`;
+          return;
+        }
+
+        let html = '';
+        filtered.forEach(c => {
+          const firstImg = c.imagens[0] || 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format';
+          html += `
+            <div class="card" data-id="${c.id}" style="background-image: url('${firstImg}');">
+              <div class="card-overlay"></div>
+              <div class="card-content">
+                <div class="card-title">${c.nome}</div>
+                <div class="card-tags">
+                  <span class="tag">${c.tamanho}</span>
+                </div>
+                <div class="pulse-text"><i class="fas fa-hand-pointer" style="font-size:0.7rem;"></i> Clique para ver mais</div>
+              </div>
+            </div>
+          `;
+        });
+        track.innerHTML = html;
+
+        document.querySelectorAll('.card').forEach(el => {
+          el.addEventListener('click', function(e) {
+            const id = parseInt(this.dataset.id);
+            const corte = cortes.find(c => c.id === id);
+            if (corte) openModal(corte);
+          });
+        });
+      }
+
+      // ----- modal functions -----
+      function openModal(corte) {
+        currentModalData = corte;
+        currentImageIndex = 0;
+        modalTitle.textContent = corte.nome;
+        modalSub.textContent = `${corte.tamanho} • ${corte.imagens.length} imagens`;
+        updateModalImage();
+        renderDots();
+        modalOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modalOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+        currentModalData = null;
+      }
+
+      function updateModalImage() {
+        if (!currentModalData) return;
+        const imgUrl = currentModalData.imagens[currentImageIndex] || currentModalData.imagens[0];
+        modalImg.src = imgUrl;
+        document.querySelectorAll('.dot').forEach((d, i) => {
+          d.classList.toggle('active', i === currentImageIndex);
+        });
+      }
+
+      function renderDots() {
+        if (!currentModalData) return;
+        const total = currentModalData.imagens.length;
+        let dotsHtml = '';
+        for (let i = 0; i < total; i++) {
+          dotsHtml += `<button class="dot ${i === 0 ? 'active' : ''}" data-index="${i}"></button>`;
+        }
+        modalDots.innerHTML = dotsHtml;
+        document.querySelectorAll('.dot').forEach(dot => {
+          dot.addEventListener('click', function() {
+            const idx = parseInt(this.dataset.index);
+            if (!isNaN(idx) && currentModalData && idx < currentModalData.imagens.length) {
+              currentImageIndex = idx;
+              updateModalImage();
+            }
+          });
+        });
+      }
+
+      function navigateModal(delta) {
+        if (!currentModalData) return;
+        const total = currentModalData.imagens.length;
+        currentImageIndex = (currentImageIndex + delta + total) % total;
+        updateModalImage();
+      }
+
+      // ----- eventos de filtro e busca -----
+      filterGroup.addEventListener('click', function(e) {
+        const btn = e.target.closest('.filter-btn');
+        if (!btn) return;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.filter;
+        renderCards();
+      });
+
+      searchInput.addEventListener('input', function() {
+        searchTerm = this.value.trim();
+        renderCards();
+      });
+
+      // ----- eventos do modal -----
+      modalClose.addEventListener('click', closeModal);
+      modalOverlay.addEventListener('click', function(e) {
+        if (e.target === modalOverlay) closeModal();
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowLeft' && modalOverlay.classList.contains('open')) {
+          e.preventDefault();
+          navigateModal(-1);
+        }
+        if (e.key === 'ArrowRight' && modalOverlay.classList.contains('open')) {
+          e.preventDefault();
+          navigateModal(1);
+        }
+      });
+      modalPrev.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navigateModal(-1);
+      });
+      modalNext.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navigateModal(1);
+      });
+
+      // inicializa
+      renderCards();
+    })();
+  </script>
+</body>
+</html>
