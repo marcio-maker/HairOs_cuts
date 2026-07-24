@@ -302,43 +302,6 @@
       50% { opacity: 0.7; }
     }
 
-    /* BOTÃO DE FAVORITAR NO CARD */
-    .card-fav-btn {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: rgba(28, 26, 23, 0.6);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #ffffff;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      transition: 0.2s ease;
-    }
-
-    .card-fav-btn:hover {
-      transform: scale(1.1);
-      background: rgba(28, 26, 23, 0.8);
-    }
-
-    .card-fav-btn.fav {
-      color: var(--accent);
-      background: rgba(192, 57, 43, 0.2);
-      border-color: rgba(192, 57, 43, 0.3);
-    }
-
-    .card-fav-btn.fav:hover {
-      background: rgba(192, 57, 43, 0.3);
-    }
-
     /* ----- FOOTER - COM FUNÇÕES ----- */
     .footer {
       position: fixed;
@@ -456,43 +419,6 @@
       color: var(--text-primary);
     }
 
-    /* BOTÃO DE FAVORITAR NO MODAL - FLUTUANTE */
-    .modal-fav-float {
-      position: absolute;
-      top: 16px;
-      right: 76px;
-      background: rgba(28, 26, 23, 0.6);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #ffffff;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 15;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      transition: 0.2s ease;
-    }
-
-    .modal-fav-float:hover {
-      transform: scale(1.1);
-      background: rgba(28, 26, 23, 0.8);
-    }
-
-    .modal-fav-float.fav {
-      color: var(--accent);
-      background: rgba(192, 57, 43, 0.2);
-      border-color: rgba(192, 57, 43, 0.3);
-    }
-
-    .modal-fav-float.fav:hover {
-      background: rgba(192, 57, 43, 0.3);
-    }
-
     .modal-title {
       font-family: 'DM Serif Display', serif;
       font-weight: 400;
@@ -500,7 +426,6 @@
       color: var(--text-primary);
       margin: 2px 0 0;
       letter-spacing: -0.02em;
-      padding-right: 120px;
     }
 
     .modal-sub {
@@ -531,6 +456,43 @@
       transition: opacity 0.2s ease;
     }
 
+    /* BOTÃO DE FAVORITAR NA IMAGEM DO MODAL */
+    .modal-img-fav {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      background: rgba(28, 26, 23, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 15;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      transition: 0.2s ease;
+    }
+
+    .modal-img-fav:hover {
+      transform: scale(1.1);
+      background: rgba(28, 26, 23, 0.9);
+    }
+
+    .modal-img-fav.fav {
+      color: var(--accent);
+      background: rgba(192, 57, 43, 0.3);
+      border-color: rgba(192, 57, 43, 0.4);
+    }
+
+    .modal-img-fav.fav:hover {
+      background: rgba(192, 57, 43, 0.4);
+    }
+
     .modal-arrow {
       position: absolute;
       top: 50%;
@@ -559,16 +521,12 @@
         font-size: 1.2rem;
         padding: 6px 12px;
       }
-      .modal-fav-float {
-        width: 38px;
-        height: 38px;
+      .modal-img-fav {
+        width: 40px;
+        height: 40px;
         font-size: 1rem;
-        right: 62px;
-        top: 14px;
-      }
-      .modal-title {
-        padding-right: 100px;
-        font-size: 1.8rem;
+        bottom: 12px;
+        right: 12px;
       }
     }
 
@@ -594,26 +552,6 @@
     .dot.active {
       background: var(--text-primary);
       width: 28px;
-    }
-
-    .modal-fav-btn {
-      margin-top: 14px;
-      padding: 10px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      cursor: pointer;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.9rem;
-      color: var(--text-primary);
-      transition: 0.2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .modal-fav-btn:hover {
-      border-color: var(--text-primary);
     }
 
     /* ----- MODAL GALERIA (GRID) ----- */
@@ -740,36 +678,6 @@
       letter-spacing: 0.06em;
     }
 
-    .gallery-item-fav {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: rgba(28, 26, 23, 0.6);
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: #ffffff;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      transition: 0.2s ease;
-      z-index: 2;
-    }
-
-    .gallery-item-fav:hover {
-      transform: scale(1.1);
-    }
-
-    .gallery-item-fav.fav {
-      color: var(--accent);
-      background: rgba(192, 57, 43, 0.2);
-      border-color: rgba(192, 57, 43, 0.3);
-    }
-
     .gallery-empty {
       text-align: center;
       color: var(--text-muted);
@@ -784,7 +692,7 @@
       margin-bottom: 16px;
     }
 
-    /* ----- MODAL DIÁRIO (FAVORITOS) ----- */
+    /* ----- MODAL DIÁRIO (FAVORITOS DE IMAGENS) ----- */
     .diary-modal {
       display: none;
       position: fixed;
@@ -869,8 +777,8 @@
     }
 
     .diary-item-img {
-      width: 60px;
-      height: 60px;
+      width: 70px;
+      height: 70px;
       object-fit: cover;
       border: 1px solid var(--border);
       flex-shrink: 0;
@@ -888,7 +796,7 @@
     .diary-item-name {
       font-family: 'DM Serif Display', serif;
       font-weight: 400;
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: var(--text-primary);
     }
 
@@ -927,7 +835,7 @@
       margin-bottom: 16px;
     }
 
-    /* ----- PERFIL COMPLETO ----- */
+    /* ----- PERFIL ----- */
     .perfil-modal {
       display: none;
       position: fixed;
@@ -1194,7 +1102,6 @@
       .card-content { bottom: 22px; left: 22px; right: 22px; }
       .tag { font-size: 0.75rem; padding: 3px 14px; }
       .pulse-text { font-size: 0.75rem; }
-      .card-fav-btn { width: 36px; height: 36px; font-size: 1rem; top: 12px; right: 12px; }
 
       .footer {
         padding: 10px 0 14px;
@@ -1209,22 +1116,19 @@
       .modal-card {
         padding: 16px 14px 20px;
       }
-      .modal-title { 
-        font-size: 1.6rem; 
-        padding-right: 80px;
-      }
+      .modal-title { font-size: 1.8rem; }
       .modal-sub { font-size: 0.8rem; }
       .modal-close {
         font-size: 1.4rem;
         top: 12px;
         right: 16px;
       }
-      .modal-fav-float {
+      .modal-img-fav {
         width: 36px;
         height: 36px;
         font-size: 0.9rem;
-        right: 58px;
-        top: 12px;
+        bottom: 10px;
+        right: 10px;
       }
 
       .diary-content, .gallery-content, .perfil-content {
@@ -1232,7 +1136,7 @@
       }
       .diary-title, .gallery-title, .perfil-title { font-size: 1.3rem; }
       .diary-item-img { width: 50px; height: 50px; }
-      .diary-item-name { font-size: 1rem; }
+      .diary-item-name { font-size: 0.9rem; }
 
       .gallery-grid {
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
@@ -1330,21 +1234,17 @@
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal-card" id="modalCard">
       <button class="modal-close" id="modalClose" aria-label="Fechar modal"><i class="fas fa-times"></i></button>
-      <button class="modal-fav-float" id="modalFavFloat" aria-label="Favoritar">
-        <i class="far fa-heart" id="modalFavFloatIcon"></i>
-      </button>
       <div class="modal-title" id="modalTitle">Pixie</div>
       <div class="modal-sub" id="modalSub">curto • 3 imagens</div>
       <div class="modal-carousel" id="modalCarousel">
         <img id="modalImg" src="" alt="corte">
+        <button class="modal-img-fav" id="modalImgFav" aria-label="Favoritar imagem">
+          <i class="far fa-heart" id="modalImgFavIcon"></i>
+        </button>
         <button class="modal-arrow left" id="modalPrev"><i class="fas fa-chevron-left"></i></button>
         <button class="modal-arrow right" id="modalNext"><i class="fas fa-chevron-right"></i></button>
       </div>
       <div class="modal-dots" id="modalDots"></div>
-      <button class="modal-fav-btn" id="modalFavBtn">
-        <i class="far fa-heart" id="modalFavIcon"></i>
-        <span id="modalFavText">Adicionar aos favoritos</span>
-      </button>
     </div>
   </div>
 
@@ -1359,18 +1259,18 @@
     </div>
   </div>
 
-  <!-- MODAL DIÁRIO (FAVORITOS) -->
+  <!-- MODAL DIÁRIO (FAVORITOS DE IMAGENS) -->
   <div class="diary-modal" id="diaryModal">
     <div class="diary-content">
       <div class="diary-header">
-        <h2 class="diary-title"><i class="fas fa-heart" style="color: var(--accent); margin-right: 10px;"></i>Meus Favoritos</h2>
+        <h2 class="diary-title"><i class="fas fa-heart" style="color: var(--accent); margin-right: 10px;"></i>Imagens Favoritas</h2>
         <button class="diary-close" id="diaryClose"><i class="fas fa-times"></i></button>
       </div>
       <div id="diaryList"></div>
     </div>
   </div>
 
-  <!-- MODAL PERFIL COMPLETO -->
+  <!-- MODAL PERFIL -->
   <div class="perfil-modal" id="perfilModal">
     <div class="perfil-content">
       <div class="perfil-header">
@@ -1504,11 +1404,8 @@
       const modalPrev = document.getElementById('modalPrev');
       const modalNext = document.getElementById('modalNext');
       const modalDots = document.getElementById('modalDots');
-      const modalFavBtn = document.getElementById('modalFavBtn');
-      const modalFavIcon = document.getElementById('modalFavIcon');
-      const modalFavText = document.getElementById('modalFavText');
-      const modalFavFloat = document.getElementById('modalFavFloat');
-      const modalFavFloatIcon = document.getElementById('modalFavFloatIcon');
+      const modalImgFav = document.getElementById('modalImgFav');
+      const modalImgFavIcon = document.getElementById('modalImgFavIcon');
 
       const galleryModal = document.getElementById('galleryModal');
       const galleryClose = document.getElementById('galleryClose');
@@ -1537,11 +1434,12 @@
       let currentImageIndex = 0;
       let currentFilter = 'todos';
       let searchTerm = '';
-      let favorites = JSON.parse(localStorage.getItem('hairOsFavorites') || '[]');
+      // Favoritos agora salvam: { corteId, imageIndex, imageUrl, corteNome }
+      let favorites = JSON.parse(localStorage.getItem('hairOsImageFavorites') || '[]');
       let profileData = JSON.parse(localStorage.getItem('hairOsProfile') || '{"nome":"Usuário HairOs","email":"usuario@hairos.com","avatar":""}');
 
       function saveFavorites() {
-        localStorage.setItem('hairOsFavorites', JSON.stringify(favorites));
+        localStorage.setItem('hairOsImageFavorites', JSON.stringify(favorites));
         updateFavCount();
         updatePerfilFavCount();
         renderCards();
@@ -1566,16 +1464,16 @@
         }
       }
 
-      function isFavorite(id) {
-        return favorites.includes(id);
+      function isImageFavorite(corteId, imageIndex) {
+        return favorites.some(f => f.corteId === corteId && f.imageIndex === imageIndex);
       }
 
-      function toggleFavorite(id) {
-        const index = favorites.indexOf(id);
+      function toggleImageFavorite(corteId, imageIndex, imageUrl, corteNome) {
+        const index = favorites.findIndex(f => f.corteId === corteId && f.imageIndex === imageIndex);
         if (index > -1) {
           favorites.splice(index, 1);
         } else {
-          favorites.push(id);
+          favorites.push({ corteId, imageIndex, imageUrl, corteNome });
         }
         saveFavorites();
         updateModalFavButton();
@@ -1586,16 +1484,9 @@
 
       function updateModalFavButton() {
         if (!currentModalData) return;
-        const isFav = isFavorite(currentModalData.id);
-        
-        // Botão flutuante
-        modalFavFloatIcon.className = isFav ? 'fas fa-heart' : 'far fa-heart';
-        modalFavFloat.classList.toggle('fav', isFav);
-        
-        // Botão inferior
-        modalFavIcon.className = isFav ? 'fas fa-heart' : 'far fa-heart';
-        modalFavIcon.style.color = isFav ? 'var(--accent)' : '';
-        modalFavText.textContent = isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos';
+        const isFav = isImageFavorite(currentModalData.id, currentImageIndex);
+        modalImgFavIcon.className = isFav ? 'fas fa-heart' : 'far fa-heart';
+        modalImgFav.classList.toggle('fav', isFav);
       }
 
       function renderCards() {
@@ -1613,18 +1504,15 @@
         let html = '';
         filtered.forEach(c => {
           const firstImg = c.imagens[0] || 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format';
-          const isFav = isFavorite(c.id);
+          const hasFav = favorites.some(f => f.corteId === c.id);
           html += `
             <div class="card" data-id="${c.id}" style="background-image: url('${firstImg}');">
-              <button class="card-fav-btn ${isFav ? 'fav' : ''}" data-id="${c.id}" onclick="event.stopPropagation(); window.toggleFavoriteCard(${c.id})">
-                <i class="${isFav ? 'fas' : 'far'} fa-heart"></i>
-              </button>
               <div class="card-overlay"></div>
               <div class="card-content">
                 <div class="card-title">${c.nome}</div>
                 <div class="card-tags">
                   <span class="tag">${c.tamanho}</span>
-                  ${isFav ? '<span class="tag tag-fav"><i class="fas fa-heart" style="margin-right: 4px;"></i> Favorito</span>' : ''}
+                  ${hasFav ? '<span class="tag tag-fav"><i class="fas fa-heart" style="margin-right: 4px;"></i> Favorito</span>' : ''}
                 </div>
                 <div class="pulse-text"><i class="fas fa-hand-pointer"></i> Clique para ver mais</div>
               </div>
@@ -1635,7 +1523,6 @@
 
         document.querySelectorAll('.card').forEach(el => {
           el.addEventListener('click', function(e) {
-            if (e.target.closest('.card-fav-btn')) return;
             const id = parseInt(this.dataset.id);
             const corte = cortes.find(c => c.id === id);
             if (corte) openModal(corte);
@@ -1663,16 +1550,13 @@
         let html = '';
         filtered.forEach(c => {
           const firstImg = c.imagens[0] || 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format';
-          const isFav = isFavorite(c.id);
+          const hasFav = favorites.some(f => f.corteId === c.id);
           html += `
             <div class="gallery-item" data-id="${c.id}">
-              <button class="gallery-item-fav ${isFav ? 'fav' : ''}" data-id="${c.id}" onclick="event.stopPropagation(); window.toggleFavoriteGallery(${c.id})">
-                <i class="${isFav ? 'fas' : 'far'} fa-heart"></i>
-              </button>
               <img src="${firstImg}" alt="${c.nome}">
               <div class="gallery-item-overlay">
                 <div class="gallery-item-name">${c.nome}</div>
-                <div class="gallery-item-tag">${c.tamanho}</div>
+                <div class="gallery-item-tag">${c.tamanho} ${hasFav ? '❤' : ''}</div>
               </div>
             </div>
           `;
@@ -1680,8 +1564,7 @@
         galleryGrid.innerHTML = html;
 
         document.querySelectorAll('.gallery-item').forEach(el => {
-          el.addEventListener('click', function(e) {
-            if (e.target.closest('.gallery-item-fav')) return;
+          el.addEventListener('click', function() {
             const id = parseInt(this.dataset.id);
             const corte = cortes.find(c => c.id === id);
             if (corte) {
@@ -1714,6 +1597,7 @@
         if (!currentModalData) return;
         const imgUrl = currentModalData.imagens[currentImageIndex] || currentModalData.imagens[0];
         modalImg.src = imgUrl;
+        updateModalFavButton();
         document.querySelectorAll('.dot').forEach((d, i) => {
           d.classList.toggle('active', i === currentImageIndex);
         });
@@ -1750,26 +1634,23 @@
           diaryList.innerHTML = `
             <div class="diary-empty">
               <i class="far fa-heart"></i>
-              <p>Seu diário de favoritos está vazio.</p>
-              <p style="font-size: 0.8rem; margin-top: 8px;">Explore os cortes e adicione seus preferidos!</p>
+              <p>Seu álbum de imagens favoritas está vazio.</p>
+              <p style="font-size: 0.8rem; margin-top: 8px;">Explore os cortes e favorite imagens específicas!</p>
             </div>
           `;
           return;
         }
 
         let html = '';
-        favorites.forEach(id => {
-          const corte = cortes.find(c => c.id === id);
-          if (!corte) return;
-          const firstImg = corte.imagens[0] || 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=center&auto=format';
+        favorites.forEach((fav, idx) => {
           html += `
             <div class="diary-item">
-              <img class="diary-item-img" src="${firstImg}" alt="${corte.nome}" data-id="${corte.id}">
+              <img class="diary-item-img" src="${fav.imageUrl}" alt="${fav.corteNome}" data-corteid="${fav.corteId}" data-imageindex="${fav.imageIndex}">
               <div class="diary-item-info">
-                <div class="diary-item-name">${corte.nome}</div>
-                <div class="diary-item-tag">${corte.tamanho}</div>
+                <div class="diary-item-name">${fav.corteNome}</div>
+                <div class="diary-item-tag">Imagem ${fav.imageIndex + 1}</div>
               </div>
-              <button class="diary-item-remove" data-id="${corte.id}" title="Remover dos favoritos">
+              <button class="diary-item-remove" data-index="${idx}" title="Remover dos favoritos">
                 <i class="fas fa-times"></i>
               </button>
             </div>
@@ -1779,11 +1660,17 @@
 
         document.querySelectorAll('.diary-item-img').forEach(img => {
           img.addEventListener('click', function() {
-            const id = parseInt(this.dataset.id);
-            const corte = cortes.find(c => c.id === id);
+            const corteId = parseInt(this.dataset.corteid);
+            const imageIndex = parseInt(this.dataset.imageindex);
+            const corte = cortes.find(c => c.id === corteId);
             if (corte) {
               closeDiary();
               openModal(corte);
+              // Navegar para a imagem específica
+              setTimeout(() => {
+                currentImageIndex = imageIndex;
+                updateModalImage();
+              }, 100);
             }
           });
         });
@@ -1791,17 +1678,14 @@
         document.querySelectorAll('.diary-item-remove').forEach(btn => {
           btn.addEventListener('click', function(e) {
             e.stopPropagation();
-            const id = parseInt(this.dataset.id);
-            const index = favorites.indexOf(id);
-            if (index > -1) {
-              favorites.splice(index, 1);
-              saveFavorites();
-              renderDiary();
-              renderCards();
-              renderGallery();
-              if (currentModalData && currentModalData.id === id) {
-                updateModalFavButton();
-              }
+            const index = parseInt(this.dataset.index);
+            favorites.splice(index, 1);
+            saveFavorites();
+            renderDiary();
+            renderCards();
+            renderGallery();
+            if (currentModalData) {
+              updateModalFavButton();
             }
           });
         });
@@ -1864,15 +1748,6 @@
         });
       }
 
-      // EXPOR FUNÇÕES PARA O ONCLICK
-      window.toggleFavoriteCard = function(id) {
-        toggleFavorite(id);
-      };
-
-      window.toggleFavoriteGallery = function(id) {
-        toggleFavorite(id);
-      };
-
       // FILTROS
       filterGroup.addEventListener('click', function(e) {
         const btn = e.target.closest('.filter-btn');
@@ -1899,18 +1774,17 @@
         if (e.target === modalOverlay) closeModal();
       });
 
-      // Botão flutuante de favoritar
-      modalFavFloat.addEventListener('click', function(e) {
+      // Botão de favoritar imagem no modal
+      modalImgFav.addEventListener('click', function(e) {
         e.stopPropagation();
         if (currentModalData) {
-          toggleFavorite(currentModalData.id);
-        }
-      });
-
-      modalFavBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        if (currentModalData) {
-          toggleFavorite(currentModalData.id);
+          const imgUrl = currentModalData.imagens[currentImageIndex] || currentModalData.imagens[0];
+          toggleImageFavorite(
+            currentModalData.id,
+            currentImageIndex,
+            imgUrl,
+            currentModalData.nome
+          );
         }
       });
 
