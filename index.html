@@ -836,7 +836,10 @@
       margin-bottom: 16px;
     }
 
-    .perfil-modal {
+    /* ============================================================
+       CONTATO - NOVA PÁGINA (substituindo o perfil)
+       ============================================================ */
+    .contato-modal {
       display: none;
       position: fixed;
       top: 0;
@@ -853,11 +856,11 @@
       animation: fadeIn 0.3s ease;
     }
 
-    .perfil-modal.open {
+    .contato-modal.open {
       display: flex;
     }
 
-    .perfil-content {
+    .contato-content {
       background: var(--bg-primary);
       width: 100%;
       max-width: 440px;
@@ -869,15 +872,15 @@
       overflow-y: auto;
     }
 
-    .perfil-content::-webkit-scrollbar {
+    .contato-content::-webkit-scrollbar {
       width: 4px;
     }
 
-    .perfil-content::-webkit-scrollbar-thumb {
+    .contato-content::-webkit-scrollbar-thumb {
       background: var(--border);
     }
 
-    .perfil-header {
+    .contato-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -886,14 +889,14 @@
       padding-bottom: 12px;
     }
 
-    .perfil-title {
+    .contato-title {
       font-family: 'DM Serif Display', serif;
       font-weight: 400;
       font-size: 1.6rem;
       color: var(--text-primary);
     }
 
-    .perfil-close {
+    .contato-close {
       background: none;
       border: none;
       color: var(--text-muted);
@@ -903,155 +906,252 @@
       padding: 4px 8px;
     }
 
-    .perfil-close:hover {
+    .contato-close:hover {
       color: var(--text-primary);
     }
 
-    .perfil-avatar {
-      text-align: center;
-      padding: 10px 0 20px;
-      position: relative;
+    .contato-body p {
+      font-size: clamp(14px, 3vw, 16px);
+      color: var(--text-secondary);
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 12px;
     }
 
-    .perfil-avatar-img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 3px solid var(--border);
-      object-fit: cover;
-      margin: 0 auto 12px;
-      display: block;
-      background: var(--bg-card);
+    .contato-social {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      padding: 8px 0 16px 0;
+      flex-wrap: wrap;
     }
 
-    .perfil-avatar-placeholder {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 3px solid var(--border);
-      margin: 0 auto 12px;
+    .contato-social a {
+      color: var(--text-muted);
+      transition: all 0.3s ease;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 3.5rem;
-      color: var(--text-muted);
-      background: var(--bg-card);
-    }
-
-    .perfil-avatar-upload {
-      position: relative;
-      display: inline-block;
-      margin-top: -10px;
-    }
-
-    .perfil-avatar-upload input[type="file"] {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      cursor: pointer;
-    }
-
-    .perfil-avatar-upload label {
-      background: var(--bg-card);
+      padding: 8px;
+      border-radius: 50%;
       border: 1px solid var(--border);
-      padding: 6px 20px;
-      font-size: 0.8rem;
-      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      text-decoration: none;
+      font-size: 1.2rem;
+    }
+
+    .contato-social a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      transform: scale(1.05);
+      background: rgba(192, 57, 43, 0.05);
+    }
+
+    .contato-social a i {
+      font-size: 1.2rem;
+    }
+
+    .contato-divider {
+      border-top: 1px solid var(--border);
+      margin: 8px 0 14px 0;
+    }
+
+    /* PIX CARD */
+    .contato-pix-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 16px 14px 18px 14px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .contato-pix-card .pix-label {
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .contato-pix-card .pix-qr {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 8px;
       display: inline-block;
-      transition: 0.2s ease;
-      font-family: 'Space Grotesk', sans-serif;
-      color: var(--text-secondary);
+      margin: 0 auto 6px auto;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
     }
 
-    .perfil-avatar-upload label:hover {
-      border-color: var(--text-primary);
-    }
-
-    .perfil-form {
-      padding: 10px 0;
-    }
-
-    .perfil-form-group {
-      margin-bottom: 16px;
-    }
-
-    .perfil-form-group label {
+    .contato-pix-card .pix-qr img {
+      width: 140px;
+      height: 140px;
+      object-fit: contain;
       display: block;
+    }
+
+    .contato-pix-card .pix-key-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: rgba(192, 57, 43, 0.06);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 4px 6px 4px 14px;
+      margin: 4px auto 0 auto;
+      max-width: 100%;
+      width: fit-content;
+    }
+
+    .contato-pix-card .pix-key-wrap span {
+      font-size: clamp(12px, 2.6vw, 14px);
+      color: var(--text-secondary);
+      font-weight: 400;
+      word-break: break-all;
+    }
+
+    .contato-pix-card .pix-key-wrap .copy-btn {
+      background: var(--accent);
+      border: none;
+      border-radius: 100px;
+      padding: 4px 14px;
+      font-size: clamp(11px, 2.4vw, 13px);
+      font-weight: 600;
+      color: #ffffff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Space Grotesk', sans-serif;
+      white-space: nowrap;
+      min-height: 28px;
+    }
+
+    .contato-pix-card .pix-key-wrap .copy-btn:hover {
+      opacity: 0.85;
+      transform: scale(1.02);
+    }
+
+    .contato-pix-card .pix-help {
+      font-size: clamp(12px, 2.6vw, 14px);
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-top: 8px;
+      letter-spacing: 0.04em;
+    }
+
+    /* FORMULÁRIO */
+    .contato-form {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .contato-form label {
       font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--text-muted);
-      margin-bottom: 4px;
       font-weight: 500;
     }
 
-    .perfil-form-group input {
-      width: 100%;
-      padding: 10px 14px;
-      border: 1px solid var(--border);
+    .contato-form input,
+    .contato-form textarea {
       background: var(--bg-card);
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.95rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
       color: var(--text-primary);
-      transition: 0.2s ease;
+      font-size: clamp(14px, 3vw, 16px);
       outline: none;
-    }
-
-    .perfil-form-group input:focus {
-      border-color: var(--text-primary);
-    }
-
-    .perfil-form-group input:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .perfil-stats {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      padding: 16px 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      margin: 16px 0;
-    }
-
-    .perfil-stat {
-      text-align: center;
-    }
-
-    .perfil-stat-number {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.4rem;
-      color: var(--text-primary);
-    }
-
-    .perfil-stat-label {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    .perfil-save-btn {
+      transition: all 0.3s ease;
       width: 100%;
-      padding: 12px;
-      background: var(--accent);
-      color: white;
-      border: none;
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: 0.2s;
-      letter-spacing: 0.06em;
-      margin-top: 8px;
+      font-weight: 300;
+      min-height: 36px;
     }
 
-    .perfil-save-btn:hover {
+    .contato-form input:focus,
+    .contato-form textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.1);
+    }
+
+    .contato-form input.error,
+    .contato-form textarea.error {
+      border-color: #ff4757;
+      animation: shake 0.3s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-4px); }
+      75% { transform: translateX(4px); }
+    }
+
+    .contato-form textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .contato-form .submit-btn {
+      background: var(--accent);
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      color: #ffffff;
+      font-size: clamp(14px, 3vw, 16px);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      min-height: 44px;
+      margin-top: 4px;
+    }
+
+    .contato-form .submit-btn:hover {
       opacity: 0.85;
+      transform: scale(1.01);
+    }
+
+    .contato-form .submit-btn:active {
+      transform: scale(0.98);
+    }
+
+    .contato-form .form-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .contato-form .form-row .field-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* RESPONSIVO PARA O CONTATO */
+    @media (max-width: 400px) {
+      .contato-content {
+        padding: 20px 16px;
+      }
+      .contato-title { font-size: 1.3rem; }
+      .contato-social a {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+      }
+      .contato-pix-card .pix-qr img {
+        width: 110px;
+        height: 110px;
+      }
     }
 
     @media (max-width: 400px) {
@@ -1128,10 +1228,10 @@
         padding: 6px 10px;
       }
 
-      .diary-content, .gallery-content, .perfil-content {
+      .diary-content, .gallery-content {
         padding: 20px 16px;
       }
-      .diary-title, .gallery-title, .perfil-title { font-size: 1.3rem; }
+      .diary-title, .gallery-title { font-size: 1.3rem; }
       .diary-item-img { width: 50px; height: 50px; }
       .diary-item-name { font-size: 0.9rem; }
 
@@ -1139,14 +1239,6 @@
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
         gap: 8px;
       }
-
-      .perfil-avatar-img, .perfil-avatar-placeholder {
-        width: 90px;
-        height: 90px;
-        font-size: 2.5rem;
-      }
-      .perfil-stats { gap: 20px; }
-      .perfil-stat-number { font-size: 1.2rem; }
     }
 
     @media (min-width: 401px) and (max-width: 600px) {
@@ -1225,9 +1317,9 @@
       <i class="fas fa-heart"></i>
       <span>Favoritos</span>
     </button>
-    <button class="footer-item" data-section="perfil" id="btnPerfil">
-      <i class="fas fa-user"></i>
-      <span>Perfil</span>
+    <button class="footer-item" data-section="contato" id="btnContato">
+      <i class="fas fa-envelope"></i>
+      <span>Contato</span>
     </button>
   </footer>
 
@@ -1235,7 +1327,7 @@
     <div class="modal-card" id="modalCard">
       <button class="modal-close" id="modalClose" aria-label="Fechar modal"><i class="fas fa-times"></i></button>
       <div class="modal-title" id="modalTitle">Pixie</div>
-      <div class="modal-sub" id="modalSub">curto • 3 imagens</div>
+      <div class="modal-sub" id="modalSub">curto • 6 imagens</div>
       <div class="modal-carousel" id="modalCarousel">
         <img id="modalImg" src="" alt="corte">
         <button class="modal-img-fav" id="modalImgFav" aria-label="Favoritar imagem">
@@ -1268,64 +1360,84 @@
     </div>
   </div>
 
-  <div class="perfil-modal" id="perfilModal">
-    <div class="perfil-content">
-      <div class="perfil-header">
-        <h2 class="perfil-title"><i class="fas fa-user" style="color: var(--accent); margin-right: 10px;"></i>Meu Perfil</h2>
-        <button class="perfil-close" id="perfilClose"><i class="fas fa-times"></i></button>
+  <!-- ============================================================
+       CONTATO - SUBSTITUINDO O PERFIL
+       ============================================================ -->
+  <div class="contato-modal" id="contatoModal">
+    <div class="contato-content">
+      <div class="contato-header">
+        <h2 class="contato-title"><i class="fas fa-envelope" style="color: var(--accent); margin-right: 10px;"></i>Contato</h2>
+        <button class="contato-close" id="contatoClose"><i class="fas fa-times"></i></button>
       </div>
 
-      <div class="perfil-avatar">
-        <img id="perfilAvatarImg" class="perfil-avatar-img" src="" alt="Avatar" style="display: none;">
-        <div id="perfilAvatarPlaceholder" class="perfil-avatar-placeholder">
-          <i class="fas fa-user"></i>
-        </div>
-        <div class="perfil-avatar-upload">
-          <label for="avatarUpload">Alterar foto</label>
-          <input type="file" id="avatarUpload" accept="image/*">
-        </div>
-      </div>
+      <div class="contato-body">
+        <p style="text-align:center;font-size:clamp(13px,2.8vw,15px);color:var(--text-secondary);font-weight:300;">
+          Conecte-se com a HairOS ou contribua com a nossa caixinha
+        </p>
 
-      <div class="perfil-form">
-        <div class="perfil-form-group">
-          <label>Nome</label>
-          <input type="text" id="perfilNome" value="Usuário HairOs">
+        <!-- REDES SOCIAIS -->
+        <div class="contato-social">
+          <a href="https://instagram.com/seuusuario" target="_blank" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.youtube.com/@seucanal" target="_blank" aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://www.tiktok.com/@seuusuario" target="_blank" aria-label="TikTok">
+            <i class="fab fa-tiktok"></i>
+          </a>
+          <a href="https://wa.me/5511914809693" target="_blank" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="https://www.facebook.com/seuusuario" target="_blank" aria-label="Facebook">
+            <i class="fab fa-facebook"></i>
+          </a>
         </div>
-        <div class="perfil-form-group">
-          <label>Email</label>
-          <input type="email" id="perfilEmail" value="usuario@hairos.com">
-        </div>
-        <div class="perfil-form-group">
-          <label>Membro desde</label>
-          <input type="text" id="perfilMembro" value="2024" disabled>
-        </div>
-      </div>
 
-      <div class="perfil-stats">
-        <div class="perfil-stat">
-          <div class="perfil-stat-number" id="perfilFavCount">0</div>
-          <div class="perfil-stat-label">Favoritos</div>
-        </div>
-        <div class="perfil-stat">
-          <div class="perfil-stat-number">13</div>
-          <div class="perfil-stat-label">Cortes</div>
-        </div>
-        <div class="perfil-stat">
-          <div class="perfil-stat-number">34</div>
-          <div class="perfil-stat-label">Visualizações</div>
-        </div>
-      </div>
+        <div class="contato-divider"></div>
 
-      <button class="perfil-save-btn" id="perfilSaveBtn">Salvar alterações</button>
+        <!-- PIX CARD -->
+        <div class="contato-pix-card">
+          <div class="pix-label">✦ Caixinha Pix</div>
+          <div class="pix-qr">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Crect width='140' height='140' fill='%23ffffff'/%3E%3Crect x='10' y='10' width='120' height='120' fill='%23f5f0eb' rx='4'/%3E%3Ctext x='70' y='55' text-anchor='middle' font-family='Arial' font-size='10' fill='%236b6560'%3EQR Code Pix%3C/text%3E%3Ctext x='70' y='75' text-anchor='middle' font-family='Arial' font-size='8' fill='%23a69f98'%3Ehairbymarciostylist%3C/text%3E%3Ctext x='70' y='90' text-anchor='middle' font-family='Arial' font-size='8' fill='%23a69f98'%3E%40gmail.com%3C/text%3E%3C/svg%3E" alt="QR Code Pix HairOS" loading="lazy">
+          </div>
+          <div class="pix-key-wrap">
+            <span>hairbymarciostylist@gmail.com</span>
+            <button class="copy-btn" id="copyPixBtn">Copiar</button>
+          </div>
+          <div class="pix-help">contribua com qualquer valor</div>
+        </div>
+
+        <div class="contato-divider"></div>
+
+        <!-- FORMULÁRIO -->
+        <p style="font-size:clamp(13px,2.8vw,15px);color:var(--text-secondary);font-weight:300;text-align:center;margin-bottom:8px;">
+          Envie uma mensagem para a equipe
+        </p>
+        <form class="contato-form" id="contatoForm" novalidate>
+          <div class="form-row">
+            <span class="field-label">Seu nome</span>
+            <input type="text" id="contatoNome" placeholder="digite seu nome" required>
+          </div>
+          <div class="form-row">
+            <span class="field-label">Seu e-mail</span>
+            <input type="email" id="contatoEmail" placeholder="seu@email.com" required>
+          </div>
+          <div class="form-row">
+            <span class="field-label">Mensagem</span>
+            <textarea id="contatoMensagem" placeholder="escreva sua mensagem..." required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Enviar mensagem</button>
+        </form>
+      </div>
     </div>
   </div>
 
   <script>
     (function() {
       // ============================================================
-      // DADOS MIGRADOS DO NOVO ARQUIVO
-      // Mapeamento: cada corte do primeiro arquivo (13 itens)
-      // recebe imagens do segundo arquivo (37 itens)
+      // DADOS COM 6 IMAGENS POR CORTE
       // ============================================================
       const cortes = [
         { 
@@ -1335,7 +1447,10 @@
           imagens: [
             "https://i.pinimg.com/736x/1e/59/3c/1e593c46f134db1bc0233b96d12d555f.jpg",
             "https://i.pinimg.com/1200x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg",
-            "https://i.pinimg.com/736x/ed/4e/7e/ed4e7e466ab2d763d9fb47b14a69ee00.jpg"
+            "https://i.pinimg.com/736x/ed/4e/7e/ed4e7e466ab2d763d9fb47b14a69ee00.jpg",
+            "https://i.pinimg.com/736x/82/23/9a/82239a80793deefd32a699937e7eed33.jpg",
+            "https://i.pinimg.com/736x/08/6a/a4/086aa4c9a4bb10e7060cb4a4e77cb0af.jpg",
+            "https://i.pinimg.com/736x/f5/4f/09/f54f09dd0ebcc3a306b36161b92f9fa2.jpg"
           ] 
         },
         { 
@@ -1345,7 +1460,10 @@
           imagens: [
             "https://i.pinimg.com/736x/83/c7/14/83c714490bf6e4033b8fe38463d2cfd3.jpg",
             "https://i.pinimg.com/1200x/de/4d/24/de4d244b7955694a245cfdb0d916a70c.jpg",
-            "https://i.pinimg.com/1200x/f4/b1/a4/f4b1a44654f6f063ed5056c5550537e5.jpg"
+            "https://i.pinimg.com/1200x/f4/b1/a4/f4b1a44654f6f063ed5056c5550537e5.jpg",
+            "https://i.pinimg.com/736x/29/6c/55/296c55e90285f1da1b1adb5a995ee08b.jpg",
+            "https://i.pinimg.com/736x/92/6b/3a/926b3a953ed0b63c2fde6013a09b6b77.jpg",
+            "https://i.pinimg.com/736x/52/14/d8/5214d86331dfdb322632ee2cf579688d.jpg"
           ] 
         },
         { 
@@ -1355,7 +1473,10 @@
           imagens: [
             "https://i.pinimg.com/736x/2a/eb/88/2aeb88213907101e1792b014a75fb4b3.jpg",
             "https://i.pinimg.com/1200x/b7/95/84/b79584466268e95b4d99080cffff97bf.jpg",
-            "https://i.pinimg.com/1200x/cc/d4/b9/ccd4b9468a39ef0669e9c1ec22b13ff5.jpg"
+            "https://i.pinimg.com/1200x/cc/d4/b9/ccd4b9468a39ef0669e9c1ec22b13ff5.jpg",
+            "https://i.pinimg.com/736x/94/98/ee/9498ee7c6015d49ec67b08cf458ef4c6.jpg",
+            "https://i.pinimg.com/736x/c6/06/11/c6061183c371a0acad15697d31d7048f.jpg",
+            "https://i.pinimg.com/736x/7d/16/9e/7d169e211595927642fa43f45aef9001.jpg"
           ] 
         },
         { 
@@ -1365,7 +1486,10 @@
           imagens: [
             "https://i.pinimg.com/736x/bc/6e/36/bc6e36d5a0499c3fb34c6fedb7745c89.jpg",
             "https://i.pinimg.com/736x/98/6f/3b/986f3b7f6ece364be7d82c4748a47d19.jpg",
-            "https://i.pinimg.com/736x/00/15/b1/0015b15cdba2fca92fb77fd9cb5cb88f.jpg"
+            "https://i.pinimg.com/736x/00/15/b1/0015b15cdba2fca92fb77fd9cb5cb88f.jpg",
+            "https://i.pinimg.com/736x/cb/d0/03/cbd003364d8285eb7453c138cf28858d.jpg",
+            "https://i.pinimg.com/736x/f8/4f/bf/f84fbf9d3a73fc6c2e9fa68943907f7b.jpg",
+            "https://i.pinimg.com/736x/62/fe/aa/62feaa283da8ca62a558f16d69d341b4.jpg"
           ] 
         },
         { 
@@ -1375,7 +1499,10 @@
           imagens: [
             "https://i.pinimg.com/736x/34/42/7d/34427d6d263a887baee616d629f6138a.jpg",
             "https://i.pinimg.com/736x/db/62/5d/db625dc302efc77fe3db0543ceb06937.jpg",
-            "https://i.pinimg.com/1200x/ba/4b/96/ba4b961cd4aa33b125eb482565088cf8.jpg"
+            "https://i.pinimg.com/1200x/ba/4b/96/ba4b961cd4aa33b125eb482565088cf8.jpg",
+            "https://i.pinimg.com/736x/fd/a6/59/fda6599a9ecb7cb0e92fe7cc3b16f12a.jpg",
+            "https://i.pinimg.com/736x/0e/67/64/0e6764f94638c14f49184be78696e78f.jpg",
+            "https://i.pinimg.com/736x/23/86/da/2386da4faa473138d1264899e8f01cf8.jpg"
           ] 
         },
         { 
@@ -1385,7 +1512,10 @@
           imagens: [
             "https://i.pinimg.com/736x/10/5d/21/105d2125f58a53877f6ac4655275e79e.jpg",
             "https://i.pinimg.com/736x/5d/2b/99/5d2b99b04c57a5512011b5ee0a1a9bb0.jpg",
-            "https://i.pinimg.com/736x/17/6d/2f/176d2f2cb767e40b4763231c666bd8e6.jpg"
+            "https://i.pinimg.com/736x/17/6d/2f/176d2f2cb767e40b4763231c666bd8e6.jpg",
+            "https://i.pinimg.com/736x/39/63/2a/39632a922b4409395efce32512cb9864.jpg",
+            "https://i.pinimg.com/736x/bc/58/6a/bc586a31df885073258fa4c6d318bdc7.jpg",
+            "https://i.pinimg.com/736x/1b/e4/9b/1be49b2dce2dfc78b5f2ccfeb9b5e8f9.jpg"
           ] 
         },
         { 
@@ -1395,7 +1525,10 @@
           imagens: [
             "https://i.pinimg.com/1200x/c4/bb/9e/c4bb9eb05ed091dc496194f629e26c6e.jpg",
             "https://i.pinimg.com/1200x/be/68/91/be6891207555f068fa5a0fa0a79ae882.jpg",
-            "https://i.pinimg.com/736x/e4/f8/66/e4f8660e6edb317bdaf66c66270fb05f.jpg"
+            "https://i.pinimg.com/736x/e4/f8/66/e4f8660e6edb317bdaf66c66270fb05f.jpg",
+            "https://i.pinimg.com/736x/09/88/7f/09887f5859cfdfc418f1f8ae86a4aaf1.jpg",
+            "https://i.pinimg.com/736x/e6/1e/19/e61e19718bdd350d09a851ac6584d599.jpg",
+            "https://i.pinimg.com/736x/3a/17/cb/3a17cb0af15f06ce469a564a5e5d27ef.jpg"
           ] 
         },
         { 
@@ -1405,7 +1538,10 @@
           imagens: [
             "https://i.pinimg.com/1200x/66/bb/26/66bb266d7934a62d3f30132a9f8e7bc6.jpg",
             "https://i.pinimg.com/736x/88/27/2c/88272c86c739b50408bc6372972a7dba.jpg",
-            "https://i.pinimg.com/1200x/ec/97/85/ec9785ae609edd9958245167b09b776a.jpg"
+            "https://i.pinimg.com/1200x/ec/97/85/ec9785ae609edd9958245167b09b776a.jpg",
+            "https://i.pinimg.com/736x/02/f6/96/02f696e9de855d9b0cef825a155ac119.jpg",
+            "https://i.pinimg.com/736x/ae/62/6a/ae626a1b58f1c32ed8426853f32e9431.jpg",
+            "https://i.pinimg.com/736x/74/e1/20/74e120bb06a82239012d7fcf6baa60f6.jpg"
           ] 
         },
         { 
@@ -1415,7 +1551,10 @@
           imagens: [
             "https://i.pinimg.com/1200x/06/15/ff/0615ff8b4ad4d40cf86d8f738b91eb44.jpg",
             "https://i.pinimg.com/736x/64/b9/1f/64b91f2e6d9ce5414ec4f2977c44406c.jpg",
-            "https://i.pinimg.com/1200x/b0/de/95/b0de952a5d2eea7092b6272e94f0083b.jpg"
+            "https://i.pinimg.com/1200x/b0/de/95/b0de952a5d2eea7092b6272e94f0083b.jpg",
+            "https://i.pinimg.com/736x/bc/d6/78/bcd678e195539bb116a2320f364d5b7f.jpg",
+            "https://i.pinimg.com/736x/fc/24/fa/fc24fa3a3e0246aafed5f39b6dd56ccb.jpg",
+            "https://i.pinimg.com/736x/12/48/b5/1248b5fbb7d9763b70522492135872e5.jpg"
           ] 
         },
         { 
@@ -1425,7 +1564,10 @@
           imagens: [
             "https://i.pinimg.com/736x/d7/f2/2b/d7f22bca30309f62004694c1f7dafa73.jpg",
             "https://i.pinimg.com/1200x/e4/4b/da/e44bdac8a5105bfec972ba9a543bfeec.jpg",
-            "https://i.pinimg.com/736x/3c/e7/6d/3ce76d862b49b6857675718fa3a9b118.jpg"
+            "https://i.pinimg.com/736x/3c/e7/6d/3ce76d862b49b6857675718fa3a9b118.jpg",
+            "https://i.pinimg.com/736x/55/18/d6/5518d672ff60f93587e2f1c2f37ac2f0.jpg",
+            "https://i.pinimg.com/736x/ce/b4/31/ceb43137708f1b4ee99b4cb5f1ec4fcf.jpg",
+            "https://i.pinimg.com/736x/70/63/94/7063948d175317a01f5a6462abea937c.jpg"
           ] 
         },
         { 
@@ -1435,7 +1577,10 @@
           imagens: [
             "https://i.pinimg.com/736x/58/0c/8a/580c8a16db34446e639e3bbf6672cd96.jpg",
             "https://i.pinimg.com/1200x/f5/92/fc/f592fc5b01136dfbbd657939d7c36c81.jpg",
-            "https://i.pinimg.com/736x/ff/5a/7e/ff5a7eb07eb5263b20a8f8d4e3b03669.jpg"
+            "https://i.pinimg.com/736x/ff/5a/7e/ff5a7eb07eb5263b20a8f8d4e3b03669.jpg",
+            "https://i.pinimg.com/736x/f7/df/57/f7df57b4f1e937592ac7a5fe1516ed76.jpg",
+            "https://i.pinimg.com/736x/3b/14/dd/3b14dd41a08c9dadff2c01359373acae.jpg",
+            "https://i.pinimg.com/736x/5b/f7/5d/5bf75d7b83b29b91a4c9c1fc17636ec5.jpg"
           ] 
         },
         { 
@@ -1445,7 +1590,10 @@
           imagens: [
             "https://i.pinimg.com/1200x/e7/6a/22/e76a22e038cba1d1daad41e6f2238004.jpg",
             "https://i.pinimg.com/736x/93/f8/33/93f833f887285c9641b001fc2bb588a9.jpg",
-            "https://i.pinimg.com/736x/ee/72/aa/ee72aa6c1ce777382e3b75ad447b957e.jpg"
+            "https://i.pinimg.com/736x/ee/72/aa/ee72aa6c1ce777382e3b75ad447b957e.jpg",
+            "https://i.pinimg.com/736x/d4/67/84/d46784e0dc04de67a08747d9dc00557f.jpg",
+            "https://i.pinimg.com/736x/52/e9/4d/52e94de7d2a15d8a802e067f3dc2cf25.jpg",
+            "https://i.pinimg.com/736x/79/32/60/7932608cf203ea5fa576657590c2f37e.jpg"
           ] 
         },
         { 
@@ -1455,7 +1603,10 @@
           imagens: [
             "https://i.pinimg.com/736x/33/40/f1/3340f1628dc6e94ef489cc02e9aef903.jpg",
             "https://i.pinimg.com/736x/29/9e/a8/299ea87e158f4270f4bd39c9a3a13c10.jpg",
-            "https://i.pinimg.com/736x/b3/6c/d3/b36cd33b1ed1393de79c40882a7d51c7.jpg"
+            "https://i.pinimg.com/736x/b3/6c/d3/b36cd33b1ed1393de79c40882a7d51c7.jpg",
+            "https://i.pinimg.com/736x/4c/37/56/4c37568c50b992cd4cbe53f306a5b651.jpg",
+            "https://i.pinimg.com/736x/06/e0/95/06e095258705e1db3daa77232e1e216f.jpg",
+            "https://i.pinimg.com/736x/3b/f8/89/3bf88971f9363c92b973cc9bdc4e9698.jpg"
           ] 
         }
       ];
@@ -1483,20 +1634,13 @@
       const diaryClose = document.getElementById('diaryClose');
       const diaryList = document.getElementById('diaryList');
 
-      const perfilModal = document.getElementById('perfilModal');
-      const perfilClose = document.getElementById('perfilClose');
-      const perfilFavCount = document.getElementById('perfilFavCount');
-      const perfilAvatarImg = document.getElementById('perfilAvatarImg');
-      const perfilAvatarPlaceholder = document.getElementById('perfilAvatarPlaceholder');
-      const avatarUpload = document.getElementById('avatarUpload');
-      const perfilNome = document.getElementById('perfilNome');
-      const perfilEmail = document.getElementById('perfilEmail');
-      const perfilSaveBtn = document.getElementById('perfilSaveBtn');
+      const contatoModal = document.getElementById('contatoModal');
+      const contatoClose = document.getElementById('contatoClose');
 
       const btnInicio = document.getElementById('btnInicio');
       const btnGaleria = document.getElementById('btnGaleria');
       const btnFavoritos = document.getElementById('btnFavoritos');
-      const btnPerfil = document.getElementById('btnPerfil');
+      const btnContato = document.getElementById('btnContato');
 
       const header = document.getElementById('mainHeader');
       const footer = document.getElementById('mainFooter');
@@ -1507,7 +1651,6 @@
       let currentFilter = 'todos';
       let searchTerm = '';
       let favorites = JSON.parse(localStorage.getItem('hairOsImageFavorites') || '[]');
-      let profileData = JSON.parse(localStorage.getItem('hairOsProfile') || '{"nome":"Usuário HairOs","email":"usuario@hairos.com","avatar":""}');
 
       let touchStartX = 0;
       let touchStartY = 0;
@@ -1531,26 +1674,15 @@
       function saveFavorites() {
         localStorage.setItem('hairOsImageFavorites', JSON.stringify(favorites));
         updateFavCount();
-        updatePerfilFavCount();
         renderCards();
         renderGallery();
         renderDiary();
-      }
-
-      function saveProfile() {
-        localStorage.setItem('hairOsProfile', JSON.stringify(profileData));
       }
 
       function updateFavCount() {
         const favCount = document.querySelector('.footer-item[data-section="favoritos"] span');
         if (favCount) {
           favCount.textContent = favorites.length > 0 ? `Favoritos (${favorites.length})` : 'Favoritos';
-        }
-      }
-
-      function updatePerfilFavCount() {
-        if (perfilFavCount) {
-          perfilFavCount.textContent = favorites.length;
         }
       }
 
@@ -1828,6 +1960,18 @@
         }, { passive: false });
       }
 
+      // CONTATO
+      function openContato() {
+        contatoModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        updateFooterActive('contato');
+      }
+
+      function closeContato() {
+        contatoModal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
       function openGallery() {
         renderGallery();
         galleryModal.classList.add('open');
@@ -1852,39 +1996,13 @@
         document.body.style.overflow = '';
       }
 
-      function openPerfil() {
-        loadProfile();
-        updatePerfilFavCount();
-        perfilModal.classList.add('open');
-        document.body.style.overflow = 'hidden';
-        updateFooterActive('perfil');
-      }
-
-      function closePerfil() {
-        perfilModal.classList.remove('open');
-        document.body.style.overflow = '';
-      }
-
-      function loadProfile() {
-        const data = JSON.parse(localStorage.getItem('hairOsProfile') || '{"nome":"Usuário HairOs","email":"usuario@hairos.com","avatar":""}');
-        perfilNome.value = data.nome || 'Usuário HairOs';
-        perfilEmail.value = data.email || 'usuario@hairos.com';
-        if (data.avatar) {
-          perfilAvatarImg.src = data.avatar;
-          perfilAvatarImg.style.display = 'block';
-          perfilAvatarPlaceholder.style.display = 'none';
-        } else {
-          perfilAvatarImg.style.display = 'none';
-          perfilAvatarPlaceholder.style.display = 'flex';
-        }
-      }
-
       function updateFooterActive(section) {
         document.querySelectorAll('.footer-item').forEach(item => {
           item.classList.toggle('active', item.dataset.section === section);
         });
       }
 
+      // FILTROS
       filterGroup.addEventListener('click', function(e) {
         const btn = e.target.closest('.filter-btn');
         if (!btn) return;
@@ -1896,6 +2014,7 @@
         updateFooterActive('inicio');
       });
 
+      // BUSCA
       searchInput.addEventListener('input', function() {
         searchTerm = this.value.trim();
         renderCards();
@@ -1903,6 +2022,7 @@
         updateFooterActive('inicio');
       });
 
+      // MODAL
       modalClose.addEventListener('click', closeModal);
       modalOverlay.addEventListener('click', function(e) {
         if (e.target === modalOverlay) closeModal();
@@ -1926,7 +2046,7 @@
           closeModal();
           closeGallery();
           closeDiary();
-          closePerfil();
+          closeContato();
         }
         if (e.key === 'ArrowLeft' && modalOverlay.classList.contains('open')) {
           e.preventDefault();
@@ -1948,6 +2068,7 @@
         navigateModal(1);
       });
 
+      // FOOTER NAVEGAÇÃO
       btnInicio.addEventListener('click', function() {
         updateFooterActive('inicio');
       });
@@ -1960,59 +2081,93 @@
         openDiary();
       });
 
-      btnPerfil.addEventListener('click', function() {
-        openPerfil();
+      btnContato.addEventListener('click', function() {
+        openContato();
       });
 
+      // GALERIA
       galleryClose.addEventListener('click', closeGallery);
       galleryModal.addEventListener('click', function(e) {
         if (e.target === galleryModal) closeGallery();
       });
 
+      // DIÁRIO
       diaryClose.addEventListener('click', closeDiary);
       diaryModal.addEventListener('click', function(e) {
         if (e.target === diaryModal) closeDiary();
       });
 
-      perfilClose.addEventListener('click', closePerfil);
-      perfilModal.addEventListener('click', function(e) {
-        if (e.target === perfilModal) closePerfil();
+      // CONTATO
+      contatoClose.addEventListener('click', closeContato);
+      contatoModal.addEventListener('click', function(e) {
+        if (e.target === contatoModal) closeContato();
       });
 
-      avatarUpload.addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = function(event) {
-            const imageUrl = event.target.result;
-            perfilAvatarImg.src = imageUrl;
-            perfilAvatarImg.style.display = 'block';
-            perfilAvatarPlaceholder.style.display = 'none';
-            profileData.avatar = imageUrl;
-            saveProfile();
-          };
-          reader.readAsDataURL(file);
+      // COPIAR PIX
+      document.getElementById('copyPixBtn').addEventListener('click', function() {
+        const pixKey = 'hairbymarciostylist@gmail.com';
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(pixKey).then(() => {
+            const originalText = this.textContent;
+            this.textContent = '✅ Copiado!';
+            this.style.background = '#2ecc71';
+            setTimeout(() => {
+              this.textContent = originalText;
+              this.style.background = '';
+            }, 2500);
+          }).catch(() => fallbackCopy(this, pixKey));
+        } else {
+          fallbackCopy(this, pixKey);
         }
       });
 
-      perfilSaveBtn.addEventListener('click', function() {
-        profileData.nome = perfilNome.value.trim() || 'Usuário HairOs';
-        profileData.email = perfilEmail.value.trim() || 'usuario@hairos.com';
-        saveProfile();
-        alert('Perfil atualizado com sucesso!');
-        closePerfil();
+      function fallbackCopy(btn, text) {
+        const input = document.createElement('input');
+        input.value = text;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+        const originalText = btn.textContent;
+        btn.textContent = '✅ Copiado!';
+        btn.style.background = '#2ecc71';
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.background = '';
+        }, 2500);
+      }
+
+      // FORMULÁRIO DE CONTATO
+      document.getElementById('contatoForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const inputs = this.querySelectorAll('input, textarea');
+        let valid = true;
+        inputs.forEach(input => {
+          if (!input.value.trim()) {
+            input.classList.add('error');
+            valid = false;
+          } else {
+            input.classList.remove('error');
+          }
+        });
+        if (!valid) {
+          alert('⚠️ Preencha todos os campos.');
+          return;
+        }
+        alert('📨 Mensagem enviada com sucesso!');
+        this.reset();
       });
 
+      // AJUSTE DE REDIMENSIONAMENTO
       let resizeTimeout;
       window.addEventListener('resize', function() {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(adjustCarouselPadding, 100);
       });
 
+      // INICIALIZAÇÃO
       setupModalScroll();
       updateFavCount();
-      updatePerfilFavCount();
-      loadProfile();
       renderCards();
       
       setTimeout(adjustCarouselPadding, 100);
